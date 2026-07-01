@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dez Cyté des jeux– Gaming & Audio Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #FF6B00;
+    --primary-dark: #e05a00;
+    --secondary: #0A0F1E;
+    --accent: #FFD600;
+    --surface: #111827;
+    --surface2: #1a2236;
+    --text: #F3F4F6;
+    --text-muted: #9CA3AF;
+    --green: #22c55e;
+    --wa: #25D366;
+    --radius: 14px;
+    --shadow: 0 8px 32px rgba(0,0,0,0.45);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--secondary);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ───── NAV ───── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: #0d131f;
+    border-bottom: 2px solid var(--primary);
+    padding: 0 20px;
+    display: flex; align-items: center; gap: 16px;
+    height: 64px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  }
+
+  .logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px; font-weight: 900;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    flex-shrink: 0;
+  }
+  .logo span { color: var(--primary); }
+
+  .nav-badge {
+    background: var(--primary);
+    color: #fff;
+    font-size: 10px; font-weight: 800;
+    padding: 2px 7px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+
+  .nav-right {
+    margin-left: auto;
+    display: flex; gap: 8px; align-items: center;
+  }
+
+  .btn-nav {
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: 8px;
+    font-size: 13px; font-weight: 700;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: transform .15s, opacity .15s;
+  }
+  .btn-nav:hover { transform: translateY(-1px); opacity: .9; }
+
+  .btn-wa-nav { background: var(--wa); color: #fff; }
+  .btn-call-nav { background: var(--surface2); color: var(--text); border: 1px solid #333; }
+
+  /* ───── HERO ───── */
+  .hero {
+    position: relative;
+    background: linear-gradient(135deg, #0d131f 0%, #1a2236 60%, #0A0F1E 100%);
+    padding: 60px 20px 50px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(255,107,0,.18) 0%, transparent 65%),
+                radial-gradient(ellipse at 20% 80%, rgba(255,214,0,.07) 0%, transparent 55%);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+
+  .hero-tag {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff; font-size: 12px; font-weight: 800;
+    padding: 4px 14px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 18px;
+  }
+
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(38px, 8vw, 68px);
+    font-weight: 900; line-height: 1.05;
+    letter-spacing: -1px;
+    margin-bottom: 14px;
+  }
+  .hero h1 em { color: var(--primary); font-style: normal; }
+
+  .hero p {
+    color: var(--text-muted);
+    font-size: 16px; max-width: 480px; margin: 0 auto 30px;
+  }
+
+  .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  .cta-primary {
+    background: var(--primary); color: #fff;
+    padding: 14px 30px; border-radius: 10px;
+    font-size: 15px; font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(255,107,0,.4);
+    transition: transform .2s, box-shadow .2s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,107,0,.5); }
+
+  .cta-secondary {
+    background: transparent; color: var(--text);
+    padding: 14px 28px; border-radius: 10px;
+    font-size: 15px; font-weight: 700;
+    border: 2px solid #333;
+    text-decoration: none;
+    transition: border-color .2s, color .2s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .cta-secondary:hover { border-color: var(--primary); color: var(--primary); }
+
+  .hero-stats {
+    display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
+    margin-top: 42px; padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,.08);
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 30px; font-weight: 900; color: var(--primary);
+    display: block;
+  }
+  .stat-label { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+
+  /* ───── SECTIONS ───── */
+  section { padding: 48px 20px; max-width: 1200px; margin: 0 auto; }
+
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 28px; flex-wrap: wrap; gap: 10px;
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 30px; font-weight: 800;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::before {
+    content: '';
+    width: 5px; height: 28px; border-radius: 3px;
+    background: var(--primary);
+    display: inline-block;
+  }
+
+  .see-all {
+    color: var(--primary); font-size: 13px; font-weight: 700;
+    text-decoration: none;
+    border: 1px solid var(--primary);
+    padding: 6px 14px; border-radius: 20px;
+    transition: background .2s, color .2s;
+  }
+  .see-all:hover { background: var(--primary); color: #fff; }
+
+  /* ───── CATEGORIES ───── */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .cat-card {
+    position: relative; border-radius: var(--radius);
+    overflow: hidden; cursor: pointer;
+    aspect-ratio: 16/9;
+    box-shadow: var(--shadow);
+    transition: transform .25s, box-shadow .25s;
+  }
+  .cat-card:hover { transform: translateY(-4px) scale(1.01); box-shadow: 0 16px 40px rgba(0,0,0,.6); }
+
+  .cat-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .5s;
+  }
+  .cat-card:hover img { transform: scale(1.06); }
+
+  .cat-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.1) 60%);
+    display: flex; align-items: flex-end;
+    padding: 16px;
+  }
+
+  .cat-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px; font-weight: 800;
+    color: #fff;
+    display: flex; align-items: center; gap: 7px;
+  }
+
+  /* ───── PRODUCTS ───── */
+  .prod-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .prod-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.06);
+    box-shadow: var(--shadow);
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+    display: flex; flex-direction: column;
+  }
+  .prod-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0,0,0,.5);
+    border-color: rgba(255,107,0,.3);
+  }
+
+  .prod-img-wrap {
+    position: relative; overflow: hidden;
+    aspect-ratio: 4/3;
+    background: #0d131f;
+  }
+
+  .prod-badge {
+    position: absolute; top: 12px; left: 12px; z-index: 2;
+    background: var(--primary); color: #fff;
+    font-size: 10px; font-weight: 800;
+    padding: 3px 9px; border-radius: 20px;
+    text-transform: uppercase;
+  }
+
+  .prod-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .5s;
+  }
+  .prod-card:hover .prod-img-wrap img { transform: scale(1.07); }
+
+  .prod-body { padding: 16px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+
+  .prod-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px; font-weight: 800; line-height: 1.2;
+  }
+
+  .prod-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  .prod-price-row { display: flex; align-items: center; gap: 10px; margin-top: auto; padding-top: 8px; }
+
+  .prod-price {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px; font-weight: 900; color: var(--primary);
+  }
+
+  .prod-stock {
+    font-size: 11px; font-weight: 700; color: var(--green);
+    background: rgba(34,197,94,.1);
+    padding: 3px 8px; border-radius: 20px;
+    border: 1px solid rgba(34,197,94,.25);
+  }
+
+  .prod-actions { display: flex; gap: 8px; padding: 0 16px 16px; }
+
+  .btn-wa {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 7px;
+    background: var(--wa); color: #fff;
+    padding: 11px 12px; border-radius: 10px;
+    font-size: 13px; font-weight: 800;
+    text-decoration: none;
+    transition: opacity .2s, transform .15s;
+  }
+  .btn-wa:hover { opacity: .9; transform: translateY(-1px); }
+
+  .btn-call {
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+    background: var(--surface2); color: var(--text);
+    padding: 11px 14px; border-radius: 10px;
+    font-size: 13px; font-weight: 800;
+    text-decoration: none; border: 1px solid #2a3347;
+    transition: background .2s, transform .15s;
+    flex-shrink: 0;
+  }
+  .btn-call:hover { background: #232e44; transform: translateY(-1px); }
+
+  /* ───── BANNER ───── */
+  .banner {
+    background: linear-gradient(120deg, var(--primary) 0%, #ff9100 100%);
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 20px; flex-wrap: wrap;
+    margin: 0 20px 40px;
+    box-shadow: 0 8px 40px rgba(255,107,0,.35);
+    max-width: 1160px;
+    margin-left: auto; margin-right: auto;
+    position: relative; overflow: hidden;
+  }
+  .banner::after {
+    content: '🎮';
+    position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+    font-size: 90px; opacity: .15; pointer-events: none;
+  }
+
+  .banner-text h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 32px; font-weight: 900; color: #fff;
+  }
+  .banner-text p { color: rgba(255,255,255,.85); font-size: 15px; margin-top: 5px; }
+
+  .btn-banner {
+    background: #fff; color: var(--primary);
+    padding: 13px 28px; border-radius: 10px;
+    font-size: 14px; font-weight: 800;
+    text-decoration: none; white-space: nowrap;
+    flex-shrink: 0;
+    transition: transform .2s;
+  }
+  .btn-banner:hover { transform: scale(1.03); }
+
+  /* ───── FLOATING BUTTONS ───── */
+  .floats {
+    position: fixed;
+    bottom: 24px; right: 20px;
+    display: flex; flex-direction: column; gap: 10px;
+    z-index: 200;
+  }
+
+  .float-btn {
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; color: #fff;
+    font-size: 22px; font-weight: 900;
+    box-shadow: 0 4px 20px rgba(0,0,0,.4);
+    transition: transform .2s, box-shadow .2s;
+    border: none; cursor: pointer;
+  }
+  .float-btn:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(0,0,0,.5); }
+
+  .float-wa { background: var(--wa); }
+  .float-call { background: #3b82f6; }
+
+  /* ───── FOOTER ───── */
+  footer {
+    background: #080d17;
+    border-top: 1px solid rgba(255,255,255,.06);
+    padding: 32px 20px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+  footer strong { color: var(--primary); }
+
+  /* ───── RESPONSIVE ───── */
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 36px; }
+    .prod-grid { grid-template-columns: 1fr; }
+    .cat-grid { grid-template-columns: 1fr 1fr; }
+    .banner { padding: 28px 20px; }
+    .banner-text h2 { font-size: 22px; }
+    .nav-badge { display: none; }
+  }
+
+  /* ───── ANIMATIONS ───── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-inner { animation: fadeUp .6s ease forwards; }
+  .prod-card  { animation: fadeUp .5s ease both; }
+  .prod-card:nth-child(1) { animation-delay: .05s; }
+  .prod-card:nth-child(2) { animation-delay: .10s; }
+  .prod-card:nth-child(3) { animation-delay: .15s; }
+  .prod-card:nth-child(4) { animation-delay: .20s; }
+  .prod-card:nth-child(5) { animation-delay: .25s; }
+  .prod-card:nth-child(6) { animation-delay: .30s; }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="logo">Dez <span>Cyté</span> &amp; Des jeux</div>
+  <div class="nav-badge">🇧🇫 Ouagadougou</div>
+  <div class="nav-right">
+    <a href="https://wa.me/22667672628?text=Bonjour%20je%20veux%20commander%20ce%20produit" class="btn-nav btn-wa-nav" target="_blank">
+      💬 WhatsApp
+    </a>
+    <a href="tel:+22667672628" class="btn-nav btn-call-nav">
+      📞 Appeler
+    </a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">⚡ Livraison rapide Ouagadougou</div>
+    <h1>Gaming &amp; Audio<br><em>Premium</em> au Burkina</h1>
+    <p>PlayStation, casques, enceintes et accessoires gaming — tout ce qu'il vous faut au meilleur prix.</p>
+    <div class="hero-ctas">
+      <a href="#produits" class="cta-primary">🛍️ Voir les produits</a>
+      <a href="https://wa.me/22667672628?text=Bonjour%20je%20veux%20commander%20ce%20produit" class="cta-secondary" target="_blank">💬 Commander via WhatsApp</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Produits garantis</span></div>
+      <div class="stat-item"><span class="stat-num">24h</span><span class="stat-label">Livraison Ouaga</span></div>
+      <div class="stat-item"><span class="stat-num">★ 5.0</span><span class="stat-label">Satisfaction client</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CATÉGORIES ═══ -->
+<section>
+  <div class="section-header">
+    <div class="section-title">🗂️ Catégories</div>
+  </div>
+  <div class="cat-grid">
+
+    <div class="cat-card">
+      <img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=600&h=337&fit=crop&auto=format" alt="PlayStation" loading="lazy"
+           onerror="this.src='https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=600&h=337&fit=crop'">
+      <div class="cat-overlay">
+        <div class="cat-title">🎮 PlayStation</div>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=337&fit=crop&auto=format" alt="Audio" loading="lazy"
+           onerror="this.src='https://images.unsplash.com/photo-1613040809024-b4ef7ba99bc3?w=600&h=337&fit=crop'">
+      <div class="cat-overlay">
+        <div class="cat-title">🎧 Audio</div>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=600&h=337&fit=crop&auto=format" alt="Jeux PlayStation" loading="lazy"
+           onerror="this.src='https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&h=337&fit=crop'">
+      <div class="cat-overlay">
+        <div class="cat-title">🕹️ Jeux PlayStation</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ BANNER PROMO ═══ -->
+<div class="banner">
+  <div class="banner-text">
+    <h2>🔥 Commande maintenant, livraison aujourd'hui !</h2>
+    <p>Paiement à la livraison disponible • Garantie incluse sur tous les produits</p>
+  </div>
+  <a href="https://wa.me/22667672628?text=Bonjour%20je%20veux%20commander%20ce%20produit" class="btn-banner" target="_blank">
+    💬 Commander maintenant
+  </a>
+</div>
+
+<!-- ═══ PRODUITS ═══ -->
+<section id="produits">
+  <div class="section-header">
+    <div class="section-title">🛍️ Nos Produits</div>
+    <a href="https://wa.me/22667672628?text=Bonjour%20je%20veux%20voir%20tous%20vos%20produits" class="see-all" target="_blank">Voir tout →</a>
+  </div>
+  <div class="prod-grid">
+
+    <!-- PS5 -->
+    <div class="prod-card">
+      <div class="prod-img-wrap">
+        <span class="prod-badge">⭐ Best-seller</span>
+        <img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=600&h=450&fit=crop&auto=format" alt="PlayStation 5" loading="lazy"
+             onerror="this.src='https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=600&h=450&fit=crop'">
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">PlayStation 5</div>
+        <div class="prod-desc">Console next-gen avec SSD ultra-rapide, DualSense haptique et graphismes 4K. L'expérience gaming ultime.</div>
+        <div class="prod-price-row">
+          <div class="prod-price">350 000 FCFA</div>
+          <div class="prod-stock">✓ En stock</div>
+        </div>
+      </div>
+      <div class="prod-actions">
+        <a href="https://wa.me/22667672628?text=Bonjour%20je%20veux%20commander%20la%20PlayStation%205%20-%20350%20000%20FCFA" class="btn-wa" target="_blank">💬 WhatsApp</a>
+        <a href="tel:+22667672628" class="btn-call">📞 Appeler</a>
+      </div>
+    </div>
+
+    <!-- PS4 -->
+    <div class="prod-card">
+      <div class="prod-img-wrap">
+        <span class="prod-badge">💰 Promo</span>
+        <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=600&h=450&fit=crop&auto=format" alt="PlayStation 4" loading="lazy"
+             onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=450&fit=crop'">
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">PlayStation 4</div>
+        <div class="prod-desc">Console PlayStation 4 Slim avec manette DualShock 4. Des centaines de jeux disponibles à prix réduit.</div>
+        <div class="prod-price-row">
+          <div class="prod-price">175 000 FCFA</div>
+          <div class="prod-stock">✓ En stock</div>
+        </div>
+      </div>
+      <div class="prod-actions">
+        <a href="https://wa.me/22667672628?text=Bonjour%20je%20veux%20commander%20la%20PlayStation%204%20-%20175%20000%20FCFA" class="btn-wa" target="_blank">💬 WhatsApp</a>
+        <a href="tel:+22667672628" class="btn-call">📞 Appeler</a>
+      </div>
+    </div>
+
+    <!-- Casque JBL -->
+    <div class="prod-card">
+      <div class="prod-img-wrap">
+        <span class="prod-badge">🎧 Audio</span>
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=450&fit=crop&auto=format" alt="Casque JBL" loading="lazy"
+             onerror="this.src='https://images.unsplash.com/photo-1613040809024-b4ef7ba99bc3?w=600&h=450&fit=crop'">
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">Casque JBL</div>
+        <div class="prod-desc">Son surround premium, réduction de bruit active et micro intégré. Parfait pour le gaming et la musique.</div>
+        <div class="prod-price-row">
+          <div class="prod-price">45 000 FCFA</div>
+          <div class="prod-stock">✓ En stock</div>
+        </div>
+      </div>
+      <div class="prod-actions">
+        <a href="https://wa.me/22667672628?text=Bonjour%20je%20veux%20commander%20le%20Casque%20JBL%20-%2045%20000%20FCFA" class="btn-wa" target="_blank">💬 WhatsApp</a>
+        <a href="tel:+22667672628" class="btn-call">📞 Appeler</a>
+      </div>
+    </div>
+
+    <!-- AirPods -->
+    <div class="prod-card">
+      <div class="prod-img-wrap">
+        <span class="prod-badge">🍎 Apple</span>
+        <img src="https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=600&h=450&fit=crop&auto=format" alt="AirPods" loading="lazy"
+             onerror="this.src='https://images.unsplash.com/photo-1588423771073-b8903fead85b?w=600&h=450&fit=crop'">
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">AirPods</div>
+        <div class="prod-desc">Écouteurs sans fil Apple avec son spatial, réduction de bruit et autonomie exceptionnelle. La liberté totale.</div>
+        <div class="prod-price-row">
+          <div class="prod-price">65 000 FCFA</div>
+          <div class="prod-stock">✓ En stock</div>
+        </div>
+      </div>
+      <div class="prod-actions">
+        <a href="https://wa.me/22667672628?text=Bonjour%20je%20veux%20commander%20les%20AirPods%20-%2065%20000%20FCFA" class="btn-wa" target="_blank">💬 WhatsApp</a>
+        <a href="tel:+22667672628" class="btn-call">📞 Appeler</a>
+      </div>
+    </div>
+
+    <!-- Enceinte -->
+    <div class="prod-card">
+      <div class="prod-img-wrap">
+        <span class="prod-badge">🔊 Son</span>
+        <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&h=450&fit=crop&auto=format" alt="Enceinte Bluetooth" loading="lazy"
+             onerror="this.src='https://images.unsplash.com/photo-1545454675-3531b543be5d?w=600&h=450&fit=crop'">
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">Enceinte Bluetooth</div>
+        <div class="prod-desc">Son 360° puissant, étanche IPX7, 24h d'autonomie. L'enceinte portable qui déchire partout.</div>
+        <div class="prod-price-row">
+          <div class="prod-price">38 000 FCFA</div>
+          <div class="prod-stock">✓ En stock</div>
+        </div>
+      </div>
+      <div class="prod-actions">
+        <a href="https://wa.me/22667672628?text=Bonjour%20je%20veux%20commander%20l'Enceinte%20Bluetooth%20-%2038%20000%20FCFA" class="btn-wa" target="_blank">💬 WhatsApp</a>
+        <a href="tel:+22667672628" class="btn-call">📞 Appeler</a>
+      </div>
+    </div>
+
+    <!-- Jeux PlayStation -->
+    <div class="prod-card">
+      <div class="prod-img-wrap">
+        <span class="prod-badge">🕹️ Jeux</span>
+        <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=600&h=450&fit=crop&auto=format" alt="Jeux PlayStation" loading="lazy"
+             onerror="this.src='https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&h=450&fit=crop'">
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">Jeux PlayStation</div>
+        <div class="prod-desc">Large sélection de jeux PS4 &amp; PS5 : FIFA, GTA, Spider-Man, Mortal Kombat et bien plus. Neufs et garantis.</div>
+        <div class="prod-price-row">
+          <div class="prod-price">à partir de 15 000 FCFA</div>
+          <div class="prod-stock">✓ Disponible</div>
+        </div>
+      </div>
+      <div class="prod-actions">
+        <a href="https://wa.me/22667672628?text=Bonjour%20je%20veux%20voir%20la%20liste%20des%20jeux%20PlayStation%20disponibles" class="btn-wa" target="_blank">💬 Voir la liste</a>
+        <a href="tel:+22667672628" class="btn-call">📞 Appeler</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <p><strong>Dez cyté des jeux</strong> — Gaming &amp; Audio Premium à Ouagadougou</p>
+  <p style="margin-top: 8px;">📞 <strong>+226 67 67 26 28</strong> &nbsp;|&nbsp; 💬 WhatsApp disponible 7j/7</p>
+  <p style="margin-top: 6px; color: #555;">Livraison rapide • Paiement à la livraison • Garantie produits</p>
+</footer>
+
+<!-- ═══ BOUTONS FLOTTANTS ═══ -->
+<div class="floats">
+  <a href="https://wa.me/22667672628?text=Bonjour%20je%20veux%20commander%20ce%20produit" class="float-btn float-wa" target="_blank" title="WhatsApp">
+    💬
+  </a>
+  <a href="tel:+22667672628" class="float-btn float-call" title="Appeler">
+    📞
+  </a>
+</div>
+
+</body>
+</html>

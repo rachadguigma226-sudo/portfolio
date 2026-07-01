@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Le Baobab Gourmand – Restaurant africain premium. Saveurs authentiques, expérience raffinée." />
+  <title>Le Baobab Gourmand | Restaurant Africain Premium</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <style>
+/* ============================================================
+   LE BAOBAB GOURMAND — style.css
+   Design premium : noir, or, beige ivoire, vert baobab
+   Mobile-first | Animations fluides
+   ============================================================ */
+
+/* ── TOKENS ── */
+:root {
+  --black:       #0A0A0A;
+  --black-soft:  #111111;
+  --gold:        #C9A84C;
+  --gold-light:  #E2C97A;
+  --gold-dim:    #8B6F2A;
+  --beige:       #F5F0E8;
+  --beige-dark:  #EDE5D5;
+  --green:       #1A3A2A;
+  --green-light: #2A5A40;
+  --white:       #FFFFFF;
+  --text-muted:  #999;
+  --border:      rgba(201,168,76,0.2);
+
+  --ff-display:  'Cormorant Garamond', Georgia, serif;
+  --ff-body:     'Inter', system-ui, sans-serif;
+
+  --radius:      4px;
+  --radius-lg:   12px;
+
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+
+  --nav-h:       72px;
+  --container:   1200px;
+  --gap:         clamp(1.5rem, 4vw, 3rem);
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--ff-body);
+  background: var(--black);
+  color: var(--beige);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img, [style*="background-image"] { object-fit: cover; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+input, select, textarea { font-family: inherit; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ── UTILITAIRES ── */
+.container { max-width: var(--container); margin: 0 auto; padding: 0 clamp(1rem, 5vw, 2rem); }
+.hidden { display: none !important; }
+.hide-sm { display: none; }
+@media (min-width: 640px) { .hide-sm { display: inline; } }
+
+/* ── TYPOGRAPHIE ── */
+h1, h2, h3 { font-family: var(--ff-display); font-weight: 400; line-height: 1.15; }
+h1 { font-size: clamp(2.6rem, 6vw, 5rem); }
+h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+h3 { font-size: 1.25rem; }
+em { font-style: italic; color: var(--gold); }
+
+/* ── BOUTONS ── */
+.btn-primary {
+  display: inline-block;
+  padding: 0.875rem 2.25rem;
+  background: var(--gold);
+  color: var(--black);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+.btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(201,168,76,0.4);
+}
+.btn-ghost {
+  display: inline-block;
+  padding: 0.875rem 2.25rem;
+  border: 1px solid rgba(245,240,232,0.5);
+  color: var(--beige);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: border-color 0.3s, background 0.3s, transform 0.2s;
+}
+.btn-ghost:hover {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.08);
+  transform: translateY(-2px);
+}
+.btn-reserve {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  background: var(--gold);
+  color: var(--black);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: background 0.3s, transform 0.2s;
+}
+.btn-reserve:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-full { width: 100%; text-align: center; }
+
+/* ── SECTION COMMONS ── */
+.section-eyebrow {
+  font-family: var(--ff-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.section-title { margin-bottom: 1.25rem; }
+.section-header { text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.gold-divider {
+  width: 48px;
+  height: 2px;
+  background: var(--gold);
+  margin: 0 auto 0;
+  transform-origin: left;
+}
+.section-header .gold-divider { margin: 0 auto; }
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+/* stagger pour enfants directs */
+.reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal:nth-child(4) { transition-delay: 0.3s; }
+
+/* ═══════════════════════════════════════════
+   LOADER
+═══════════════════════════════════════════ */
+#loader {
+  position: fixed; inset: 0;
+  background: var(--black);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.6s var(--ease-out), visibility 0.6s;
+}
+#loader.hidden-loader { opacity: 0; visibility: hidden; }
+.loader-inner { text-align: center; }
+.loader-logo {
+  font-family: var(--ff-display);
+  font-size: 2rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 1rem;
+}
+.loader-line {
+  height: 2px;
+  background: var(--gold);
+  width: 0;
+  animation: loadBar 1.2s var(--ease-out) forwards 0.3s;
+}
+@keyframes loadBar { to { width: 100%; } }
+
+/* ═══════════════════════════════════════════
+   HEADER / NAV
+═══════════════════════════════════════════ */
+#header {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: transparent;
+  transition: background 0.4s, box-shadow 0.4s, padding 0.3s;
+}
+#header.scrolled {
+  background: rgba(10,10,10,0.96);
+  box-shadow: 0 1px 0 var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.nav-container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2rem);
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+/* Logo */
+.logo {
+  display: flex; align-items: center; gap: 0.6rem;
+  flex-shrink: 0;
+}
+.logo-icon { font-size: 1.5rem; line-height: 1; }
+.logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.logo-main {
+  font-family: var(--ff-display);
+  font-size: 1.2rem;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+}
+.logo-sub {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--beige);
+  opacity: 0.7;
+}
+/* Nav links desktop */
+.nav-links {
+  display: none;
+  gap: 2rem;
+}
+@media (min-width: 900px) {
+  .nav-links { display: flex; }
+}
+.nav-links a {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--beige);
+  opacity: 0.8;
+  position: relative;
+  padding-bottom: 3px;
+  transition: opacity 0.2s, color 0.2s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 100%;
+  height: 1px;
+  background: var(--gold);
+  transition: right 0.3s var(--ease-out);
+}
+.nav-links a:hover { opacity: 1; color: var(--gold); }
+.nav-links a:hover::after { right: 0; }
+
+/* Nav actions */
+.nav-actions { display: flex; align-items: center; gap: 1rem; }
+.burger {
+  display: flex; flex-direction: column; gap: 5px;
+  padding: 6px; width: 38px;
+}
+.burger span {
+  display: block; height: 1.5px; background: var(--beige);
+  transition: transform 0.3s, opacity 0.3s, width 0.3s;
+}
+.burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+@media (min-width: 900px) {
+  .burger { display: none; }
+}
+
+/* Mobile menu */
+.mobile-menu {
+  display: flex; flex-direction: column;
+  background: rgba(10,10,10,0.98);
+  padding: 0;
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.45s var(--ease-in-out), padding 0.3s;
+}
+.mobile-menu.open {
+  max-height: 500px;
+  padding: 1.5rem 1.5rem 2rem;
+  border-top: 1px solid var(--border);
+}
+.mobile-link {
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+  opacity: 0.85;
+  transition: color 0.2s, opacity 0.2s;
+}
+.mobile-link:hover { color: var(--gold); opacity: 1; }
+.mobile-reserve { margin-top: 1.5rem; text-align: center; }
+@media (min-width: 900px) { .mobile-menu { display: none !important; } }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+#hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex; align-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  /* Fond en dégradé + pattern SVG, remplace une photo */
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 30 Q15 0 30 30 Q45 60 60 30' fill='none' stroke='%23C9A84C' stroke-opacity='.06' stroke-width='1'/%3E%3Cpath d='M0 60 Q15 30 30 60' fill='none' stroke='%23C9A84C' stroke-opacity='.04' stroke-width='1'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 80% 80% at 60% 50%, #1A3A2A 0%, #0A0A0A 60%);
+  background-size: 60px 60px, cover;
+  animation: heroBgShift 18s ease-in-out infinite alternate;
+}
+@keyframes heroBgShift {
+  from { background-position: 0 0, center; }
+  to   { background-position: 60px 60px, center; }
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(10,10,10,0.7) 0%, rgba(26,58,42,0.3) 60%, transparent 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + 3rem) clamp(1rem, 5vw, 2rem) 4rem;
+  width: 100%;
+}
+.hero-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+}
+.hero-title {
+  color: var(--white);
+  max-width: 650px;
+  margin-bottom: 1.5rem;
+}
+.hero-sub {
+  max-width: 480px;
+  font-size: 1.05rem;
+  color: rgba(245,240,232,0.75);
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+/* Scroll hint */
+.scroll-hint {
+  position: absolute; bottom: 2.5rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.5rem; z-index: 2;
+}
+.scroll-hint span {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.7;
+}
+.scroll-line {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+/* Reveal stagger hero */
+.hero-content .reveal { transition-delay: 0s; }
+.hero-content .reveal:nth-child(2) { transition-delay: 0.15s; }
+.hero-content .reveal:nth-child(3) { transition-delay: 0.3s; }
+.hero-content .reveal:nth-child(4) { transition-delay: 0.45s; }
+.hero-content .reveal:nth-child(5) { transition-delay: 0.6s; }
+
+/* ═══════════════════════════════════════════
+   STATS BAR
+═══════════════════════════════════════════ */
+.stats-bar {
+  background: var(--green);
+  border-top: 1px solid rgba(201,168,76,0.15);
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+  padding: 2.5rem 0;
+}
+.stats-container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 2rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem 0;
+}
+.stat {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0 2rem;
+  text-align: center;
+  flex: 1 1 140px;
+}
+.stat strong {
+  font-family: var(--ff-display);
+  font-size: 2.2rem;
+  color: var(--gold);
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+.stat span { font-size: 0.8rem; letter-spacing: 0.05em; opacity: 0.75; }
+.stat-divider {
+  width: 1px; height: 40px;
+  background: rgba(201,168,76,0.3);
+  flex-shrink: 0;
+  display: none;
+}
+@media (min-width: 640px) { .stat-divider { display: block; } }
+
+/* ═══════════════════════════════════════════
+   À PROPOS
+═══════════════════════════════════════════ */
+.section-about {
+  padding: clamp(4rem, 10vw, 8rem) 0;
+  background: var(--black);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .about-grid { grid-template-columns: 1fr 1fr; gap: 5rem; }
+}
+/* Images */
+.about-img-wrap {
+  position: relative;
+  height: 420px;
+}
+@media (min-width: 900px) { .about-img-wrap { height: 560px; } }
+.about-img {
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius-lg);
+}
+.about-img-main {
+  top: 0; left: 0;
+  width: 80%; height: 85%;
+  box-shadow: 0 32px 64px rgba(0,0,0,0.5);
+}
+.about-img-accent {
+  bottom: 0; right: 0;
+  width: 55%; height: 50%;
+  border: 3px solid var(--black);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+}
+.about-badge {
+  position: absolute;
+  top: 50%; left: 70%;
+  transform: translate(-50%, -50%);
+  background: var(--gold);
+  color: var(--black);
+  padding: 1rem;
+  text-align: center;
+  border-radius: var(--radius);
+  min-width: 90px;
+  box-shadow: 0 8px 32px rgba(201,168,76,0.4);
+  z-index: 2;
+}
+.badge-year {
+  display: block;
+  font-family: var(--ff-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1;
+}
+.badge-text {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+/* Texte */
+.about-text .gold-divider { margin: 1.5rem 0 1.75rem; }
+.about-desc {
+  color: rgba(245,240,232,0.75);
+  margin-bottom: 1.25rem;
+  font-weight: 300;
+  font-size: 1.02rem;
+}
+.about-features {
+  display: flex; flex-direction: column; gap: 1rem;
+  margin-top: 2rem;
+}
+.feature {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.02);
+  transition: border-color 0.3s, background 0.3s;
+}
+.feature:hover {
+  border-color: rgba(201,168,76,0.5);
+  background: rgba(201,168,76,0.04);
+}
+.feature-icon { font-size: 1.4rem; flex-shrink: 0; }
+.feature strong { display: block; margin-bottom: 0.15rem; font-size: 0.9rem; }
+.feature p { font-size: 0.82rem; color: var(--text-muted); margin: 0; }
+
+/* ═══════════════════════════════════════════
+   MENU
+═══════════════════════════════════════════ */
+.section-menu {
+  padding: clamp(4rem, 10vw, 8rem) 0;
+  background: var(--black-soft);
+}
+/* Tabs */
+.menu-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+}
+.tab {
+  padding: 0.6rem 1.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.6);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  transition: all 0.25s;
+}
+.tab:hover { color: var(--gold); border-color: var(--gold-dim); }
+.tab.active {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+  font-weight: 600;
+}
+/* Grid plats */
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 600px) { .menu-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .menu-grid { grid-template-columns: repeat(4, 1fr); } }
+/* Carte plat */
+.dish-card {
+  background: #151515;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s, border-color 0.35s;
+}
+.dish-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+  border-color: rgba(201,168,76,0.25);
+}
+.dish-img {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s var(--ease-out);
+}
+.dish-card:hover .dish-img { transform: scale(1.05); }
+.dish-info { padding: 1.25rem; }
+.dish-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+.dish-header h3 { font-size: 1.1rem; flex: 1; }
+.dish-price {
+  color: var(--gold);
+  font-family: var(--ff-display);
+  font-size: 1.2rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.dish-info p {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+.dish-tag {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  background: rgba(201,168,76,0.12);
+  color: var(--gold);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px solid rgba(201,168,76,0.3);
+}
+
+/* ═══════════════════════════════════════════
+   GALERIE
+═══════════════════════════════════════════ */
+.section-gallery {
+  padding: clamp(4rem, 10vw, 8rem) 0;
+  background: var(--black);
+}
+.gallery-masonry {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 200px;
+  gap: 0.75rem;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .gallery-masonry {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 220px;
+    gap: 1rem;
+  }
+}
+.g-item {
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  cursor: zoom-in;
+  transition: transform 0.4s var(--ease-out), filter 0.4s;
+}
+.g-item::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(201,168,76,0);
+  transition: background 0.4s;
+}
+.g-item:hover { transform: scale(1.02); filter: brightness(1.1); }
+.g-item:hover::after { background: rgba(201,168,76,0.08); }
+.g-tall { grid-row: span 2; }
+.g-wide { grid-column: span 2; }
+
+/* ═══════════════════════════════════════════
+   AVIS
+═══════════════════════════════════════════ */
+.section-reviews {
+  padding: clamp(4rem, 10vw, 8rem) 0;
+  background: var(--green);
+}
+.reviews-track { overflow: hidden; position: relative; }
+.reviews-slider {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.5s var(--ease-out);
+}
+.review-card {
+  flex: 0 0 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+}
+@media (min-width: 768px) {
+  .review-card { flex: 0 0 calc(50% - 0.75rem); }
+}
+@media (min-width: 1100px) {
+  .review-card { flex: 0 0 calc(33.333% - 1rem); }
+}
+.review-stars {
+  color: var(--gold);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.25rem;
+}
+blockquote {
+  font-family: var(--ff-display);
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.7;
+  color: rgba(245,240,232,0.85);
+  margin-bottom: 1.5rem;
+  quotes: "«" "»";
+}
+blockquote::before { content: open-quote; color: var(--gold); font-size: 1.5rem; }
+.review-author { display: flex; align-items: center; gap: 0.85rem; }
+.review-avatar {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--black);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.review-author strong { display: block; font-size: 0.9rem; margin-bottom: 0.1rem; }
+.review-author span { font-size: 0.78rem; color: var(--text-muted); }
+/* Slider controls */
+.slider-controls {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+.slider-btn {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.4);
+  color: var(--gold);
+  font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.3s, border-color 0.3s, transform 0.2s;
+}
+.slider-btn:hover {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+  transform: scale(1.08);
+}
+.slider-dots { display: flex; gap: 0.5rem; }
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(201,168,76,0.3);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.dot.active { background: var(--gold); transform: scale(1.3); }
+
+/* ═══════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════ */
+.section-contact {
+  padding: clamp(4rem, 10vw, 8rem) 0;
+  background: var(--black-soft);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+@media (min-width: 900px) {
+  .contact-grid { grid-template-columns: 1fr 1.3fr; gap: 5rem; }
+}
+/* Info blocks */
+.info-block {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.info-block:last-child { border-bottom: none; }
+.info-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
+.info-block strong { display: block; margin-bottom: 0.3rem; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--gold); }
+.info-block p, .info-block a {
+  font-size: 0.9rem;
+  color: rgba(245,240,232,0.7);
+  line-height: 1.7;
+}
+.info-block a:hover { color: var(--gold); }
+
+/* Formulaire */
+.contact-form-wrap {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group {
+  display: flex; flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+.form-group:last-child { margin-bottom: 0; }
+.form-group label {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--beige);
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s, background 0.3s;
+  width: 100%;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: rgba(245,240,232,0.3); }
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.04);
+}
+.form-group select option { background: var(--black-soft); color: var(--beige); }
+.form-group textarea { resize: vertical; min-height: 90px; }
+.form-success {
+  display: none;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(26,58,42,0.6);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  color: var(--gold);
+  text-align: center;
+}
+.form-success.show { display: block; }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+.site-footer { background: #070707; border-top: 1px solid var(--border); }
+.footer-top { padding: clamp(3rem, 8vw, 6rem) 0; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+@media (min-width: 640px) {
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1000px) {
+  .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; }
+}
+/* Brand col */
+.footer-brand .footer-logo { margin-bottom: 1.25rem; display: inline-flex; }
+.footer-brand p {
+  font-size: 0.85rem;
+  color: rgba(245,240,232,0.5);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  max-width: 280px;
+}
+.social-links { display: flex; gap: 0.75rem; }
+.social-link {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  color: rgba(245,240,232,0.6);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+}
+.social-link:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201,168,76,0.08);
+}
+/* Footer cols */
+.footer-col h4 {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+}
+.footer-col ul { display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-col li, .footer-col a {
+  font-size: 0.85rem;
+  color: rgba(245,240,232,0.5);
+  line-height: 1.5;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--gold); }
+/* Bottom bar */
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 1.25rem 0;
+}
+.footer-bottom .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.footer-bottom p { font-size: 0.78rem; color: rgba(245,240,232,0.35); }
+.footer-legal { display: flex; gap: 1.5rem; }
+.footer-legal a {
+  font-size: 0.78rem;
+  color: rgba(245,240,232,0.35);
+  transition: color 0.2s;
+}
+.footer-legal a:hover { color: var(--gold); }
+
+/* ═══════════════════════════════════════════
+   BACK TO TOP
+═══════════════════════════════════════════ */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem; right: 1.5rem;
+  width: 44px; height: 44px;
+  background: var(--gold);
+  color: var(--black);
+  border-radius: 50%;
+  font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+  z-index: 800;
+}
+.back-to-top.visible {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.back-to-top:hover { background: var(--gold-light); transform: translateY(-3px); }
+
+</style>
+</head>
+<body>
+
+  <!-- ========== LOADER ========== -->
+  <div id="loader">
+    <div class="loader-inner">
+      <span class="loader-logo">Le Baobab</span>
+      <div class="loader-line"></div>
+    </div>
+  </div>
+
+  <!-- ========== HEADER / NAV ========== -->
+  <header id="header">
+    <div class="nav-container">
+      <!-- Logo -->
+      <a href="#hero" class="logo" aria-label="Le Baobab Gourmand - Accueil">
+        <span class="logo-icon">🌳</span>
+        <div class="logo-text">
+          <span class="logo-main">Le Baobab</span>
+          <span class="logo-sub">Gourmand</span>
+        </div>
+      </a>
+
+      <!-- Navigation desktop -->
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="#about">À propos</a>
+        <a href="#menu">Menu</a>
+        <a href="#gallery">Galerie</a>
+        <a href="#reviews">Avis</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- CTA + Burger -->
+      <div class="nav-actions">
+        <a href="#contact" class="btn-reserve">Réserver</a>
+        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menu mobile -->
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
+      <a href="#about" class="mobile-link">À propos</a>
+      <a href="#menu" class="mobile-link">Menu</a>
+      <a href="#gallery" class="mobile-link">Galerie</a>
+      <a href="#reviews" class="mobile-link">Avis</a>
+      <a href="#contact" class="mobile-link">Contact</a>
+      <a href="#contact" class="btn-reserve mobile-reserve">Réserver une table</a>
+    </nav>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section id="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <!-- Dégradé et texture svg inline -->
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow reveal">Restaurant Africain · Paris</p>
+      <h1 class="hero-title reveal">
+        L'Afrique dans<br />
+        <em>chaque saveur</em>
+      </h1>
+      <p class="hero-sub reveal">
+        Une cuisine authentique revisitée avec élégance,<br class="hide-sm" />
+        au cœur d'une expérience gastronomique unique.
+      </p>
+      <div class="hero-actions reveal">
+        <a href="#contact" class="btn-primary">Réserver une table</a>
+        <a href="#menu" class="btn-ghost">Découvrir le menu</a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-hint" aria-hidden="true">
+      <span>Défiler</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ========== BANDEAU CHIFFRES ========== -->
+  <section class="stats-bar">
+    <div class="stats-container">
+      <div class="stat reveal">
+        <strong>12+</strong>
+        <span>Années d'expérience</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat reveal">
+        <strong>28</strong>
+        <span>Spécialités au menu</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat reveal">
+        <strong>4,9★</strong>
+        <span>Note moyenne</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat reveal">
+        <strong>6</strong>
+        <span>Pays représentés</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== À PROPOS ========== -->
+  <section id="about" class="section-about">
+    <div class="container">
+      <div class="about-grid">
+        <!-- Image -->
+        <div class="about-visual reveal">
+          <div class="about-img-wrap">
+            <div class="about-img about-img-main" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80');" role="img" aria-label="Salle du restaurant"></div>
+            <div class="about-img about-img-accent" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80');" role="img" aria-label="Plat africain traditionnel"></div>
+          </div>
+          <div class="about-badge">
+            <span class="badge-year">2012</span>
+            <span class="badge-text">Fondé avec passion</span>
+          </div>
+        </div>
+
+        <!-- Texte -->
+        <div class="about-text">
+          <p class="section-eyebrow reveal">Notre histoire</p>
+          <h2 class="section-title reveal">Une passion née<br /><em>au cœur de l'Afrique</em></h2>
+          <div class="gold-divider reveal" aria-hidden="true"></div>
+          <p class="about-desc reveal">
+            Le Baobab Gourmand est né d'un rêve simple : partager la richesse et la diversité de la gastronomie africaine avec le monde. Fondé en 2012 par le chef <strong>Mamadou Diallo</strong>, natif de Dakar, notre restaurant est devenu un lieu de référence à Paris.
+          </p>
+          <p class="about-desc reveal">
+            Chaque plat est une invitation au voyage — des épices du Maroc aux grillades de Côte d'Ivoire, en passant par les tajines d'Éthiopie. Nos ingrédients sont sourcés directement auprès de producteurs locaux africains, garantissant authenticité et fraîcheur.
+          </p>
+          <div class="about-features reveal">
+            <div class="feature">
+              <span class="feature-icon">🌿</span>
+              <div>
+                <strong>Ingrédients frais</strong>
+                <p>Sourcés directement du continent</p>
+              </div>
+            </div>
+            <div class="feature">
+              <span class="feature-icon">👨‍🍳</span>
+              <div>
+                <strong>Chef étoilé</strong>
+                <p>Formé entre Dakar et Paris</p>
+              </div>
+            </div>
+            <div class="feature">
+              <span class="feature-icon">🎶</span>
+              <div>
+                <strong>Ambiance vivante</strong>
+                <p>Musique live chaque vendredi</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MENU ========== -->
+  <section id="menu" class="section-menu">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow reveal">Notre cuisine</p>
+        <h2 class="section-title reveal">Une sélection<br /><em>de nos spécialités</em></h2>
+        <div class="gold-divider reveal" aria-hidden="true"></div>
+      </div>
+
+      <!-- Onglets catégories -->
+      <div class="menu-tabs reveal" role="tablist" aria-label="Catégories du menu">
+        <button class="tab active" data-tab="entrees" role="tab" aria-selected="true">Entrées</button>
+        <button class="tab" data-tab="plats" role="tab" aria-selected="false">Plats</button>
+        <button class="tab" data-tab="desserts" role="tab" aria-selected="false">Desserts</button>
+        <button class="tab" data-tab="boissons" role="tab" aria-selected="false">Boissons</button>
+      </div>
+
+      <!-- Entrées -->
+      <div class="menu-grid" id="tab-entrees" role="tabpanel">
+        <div class="dish-card reveal">
+          <div class="dish-img" style="background-image: url('https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=400&q=80');" role="img" aria-label="Accras de crevettes"></div>
+          <div class="dish-info">
+            <div class="dish-header">
+              <h3>Accras de Crevettes</h3>
+              <span class="dish-price">14 €</span>
+            </div>
+            <p>Beignets croustillants aux crevettes fraîches, sauce tartare citronnée et piment doux.</p>
+            <span class="dish-tag">Signature</span>
+          </div>
+        </div>
+        <div class="dish-card reveal">
+          <div class="dish-img" style="background-image: url('https://images.unsplash.com/photo-1548943487-a2e4e43b4853?w=400&q=80');" role="img" aria-label="Salade tropicale"></div>
+          <div class="dish-info">
+            <div class="dish-header">
+              <h3>Salade Tropicale</h3>
+              <span class="dish-price">12 €</span>
+            </div>
+            <p>Mangue, avocat, grenade, vinaigrette au gingembre et basilic africain.</p>
+          </div>
+        </div>
+        <div class="dish-card reveal">
+          <div class="dish-img" style="background-image: url('https://images.unsplash.com/photo-1600335895229-6e75511892c8?w=400&q=80');" role="img" aria-label="Soupe Yassa"></div>
+          <div class="dish-info">
+            <div class="dish-header">
+              <h3>Velouté Yassa</h3>
+              <span class="dish-price">11 €</span>
+            </div>
+            <p>Crème onctueuse au citron confit et oignons caramélisés, tradition sénégalaise.</p>
+          </div>
+        </div>
+        <div class="dish-card reveal">
+          <div class="dish-img" style="background-image: url('https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=80');" role="img" aria-label="Samossas africains"></div>
+          <div class="dish-info">
+            <div class="dish-header">
+              <h3>Samossas du Maghreb</h3>
+              <span class="dish-price">13 €</span>
+            </div>
+            <p>Feuilletés croustillants farcis à l'agneau épicé, menthe fraîche et sauce harissa maison.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plats -->
+      <div class="menu-grid hidden" id="tab-plats" role="tabpanel">
+        <div class="dish-card reveal">
+          <div class="dish-img" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80');" role="img" aria-label="Thiéboudienne"></div>
+          <div class="dish-info">
+            <div class="dish-header">
+              <h3>Thiéboudienne Royal</h3>
+              <span class="dish-price">28 €</span>
+            </div>
+            <p>Riz au poisson sénégalais, légumes du jardin, sauce tomate épicée et yète.</p>
+            <span class="dish-tag">Best-seller</span>
+          </div>
+        </div>
+        <div class="dish-card reveal">
+          <div class="dish-img" style="background-image: url('https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80');" role="img" aria-label="Mafé Agneau"></div>
+          <div class="dish-info">
+            <div class="dish-header">
+              <h3>Mafé d'Agneau</h3>
+              <span class="dish-price">32 €</span>
+            </div>
+            <p>Épaule d'agneau confite en sauce arachide, ignames dorées et plantain grillé.</p>
+            <span class="dish-tag">Signature</span>
+          </div>
+        </div>
+        <div class="dish-card reveal">
+          <div class="dish-img" style="background-image: url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&q=80');" role="img" aria-label="Poulet Yassa"></div>
+          <div class="dish-info">
+            <div class="dish-header">
+              <h3>Poulet Yassa</h3>
+              <span class="dish-price">24 €</span>
+            </div>
+            <p>Marinade citronnée 24h, oignons confits, olives et piment, riz parfumé.</p>
+          </div>
+        </div>
+        <div class="dish-card reveal">
+          <div class="dish-img" style="background-image: url('https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&q=80');" role="img" aria-label="Injera Éthiopien"></div>
+          <div class="dish-info">
+            <div class="dish-header">
+              <h3>Plateau Éthiopien</h3>
+              <span class="dish-price">36 €</span>
+            </div>
+            <p>Injera teff, misir wat, doro wat et légumes épicés — expérience de partage authentique.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desserts -->
+      <div class="menu-grid hidden" id="tab-desserts" role="tabpanel">
+        <div class="dish-card reveal">
+          <div class="dish-img" style="background-image: url('https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&q=80');" role="img" aria-label="Fondant chocolat"></div>
+          <div class="dish-info">
+            <div class="dish-header">
+              <h3>Fondant Cacao Pur</h3>
+              <span class="dish-price">10 €</span>
+            </div>
+            <p>Chocolat grand cru de Côte d'Ivoire, cœur coulant, glace à la vanille de Madagascar.</p>
+            <span class="dish-tag">Signature</span>
+          </div>
+        </div>
+        <div class="dish-card reveal">
+          <div class="dish-img" style="background-image: url('https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80');" role="img" aria-label="Tarte mangue"></div>
+          <div class="dish-info">
+            <div class="dish-header">
+              <h3>Tarte Mangue Passion</h3>
+              <span class="dish-price">9 €</span>
+            </div>
+            <p>Pâte sablée beurre, crème pâtissière légère, mangues fraîches et coulis fruit de la passion.</p>
+          </div>
+        </div>
+        <div class="dish-card reveal">
+          <div class="dish-img" style="background-image: url('https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&q=80');" role="img" aria-label="Thiakry"></div>
+          <div class="dish-info">
+            <div class="dish-header">
+              <h3>Thiakry Revisité</h3>
+              <span class="dish-price">8 €</span>
+            </div>
+            <p>Crème de mil sénégalaise au yaourt, noix de coco râpée et fleur d'oranger.</p>
+          </div>
+        </div>
+        <div class="dish-card reveal">
+          <div class="dish-img" style="background-image: url('https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=400&q=80');" role="img" aria-label="Baklava africain"></div>
+          <div class="dish-info">
+            <div class="dish-header">
+              <h3>Baklava du Sahel</h3>
+              <span class="dish-price">9 €</span>
+            </div>
+            <p>Feuilles de brick, pistaches, miel d'acacia et eau de rose — voyage entre deux rives.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Boissons -->
+      <div class="menu-grid hidden" id="tab-boissons" role="tabpanel">
+        <div class="dish-card reveal">
+          <div class="dish-img" style="background-image: url('https://images.unsplash.com/photo-1562204320-1a7898b35f23?w=400&q=80');" role="img" aria-label="Bissap"></div>
+          <div class="dish-info">
+            <div class="dish-header">
+              <h3>Bissap Premium</h3>
+              <span class="dish-price">6 €</span>
+            </div>
+            <p>Infusion d'hibiscus artisanale, gingembre frais, menthe et sucre de canne.</p>
+            <span class="dish-tag">Maison</span>
+          </div>
+        </div>
+        <div class="dish-card reveal">
+          <div class="dish-img" style="background-image: url('https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400&q=80');" role="img" aria-label="Cocktail baobab"></div>
+          <div class="dish-info">
+            <div class="dish-header">
+              <h3>Baobab Sunrise</h3>
+              <span class="dish-price">12 €</span>
+            </div>
+            <p>Poudre de baobab, jus d'orange sanguine, sirop d'hibiscus, eau pétillante — sans alcool.</p>
+          </div>
+        </div>
+        <div class="dish-card reveal">
+          <div class="dish-img" style="background-image: url('https://images.unsplash.com/photo-1607446045875-ef6900e04f5a?w=400&q=80');" role="img" aria-label="Thé à la menthe"></div>
+          <div class="dish-info">
+            <div class="dish-header">
+              <h3>Thé Cérémonie</h3>
+              <span class="dish-price">7 €</span>
+            </div>
+            <p>Thé vert gunpowder infusé à la menthe fraîche, sucre de canne, versé à la tradition.</p>
+          </div>
+        </div>
+        <div class="dish-card reveal">
+          <div class="dish-img" style="background-image: url('https://images.unsplash.com/photo-1510972527921-ce03766a1cf1?w=400&q=80');" role="img" aria-label="Jus de gingembre"></div>
+          <div class="dish-info">
+            <div class="dish-header">
+              <h3>Gnamakoudji</h3>
+              <span class="dish-price">6 €</span>
+            </div>
+            <p>Jus de gingembre frappé, citron vert, clou de girofle et poivre de Selim.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GALERIE ========== -->
+  <section id="gallery" class="section-gallery">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow reveal">L'expérience visuelle</p>
+        <h2 class="section-title reveal">Notre univers<br /><em>en images</em></h2>
+        <div class="gold-divider reveal" aria-hidden="true"></div>
+      </div>
+
+      <div class="gallery-masonry reveal">
+        <div class="g-item g-tall" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80');" role="img" aria-label="Salle du restaurant"></div>
+        <div class="g-item" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80');" role="img" aria-label="Plat africain"></div>
+        <div class="g-item" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80');" role="img" aria-label="Thiéboudienne"></div>
+        <div class="g-item g-wide" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80');" role="img" aria-label="Ambiance restaurant"></div>
+        <div class="g-item" style="background-image: url('https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80');" role="img" aria-label="Mafé agneau"></div>
+        <div class="g-item g-tall" style="background-image: url('https://images.unsplash.com/photo-1551218808-94e220e084d2?w=400&q=80');" role="img" aria-label="Chef en cuisine"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== AVIS CLIENTS ========== -->
+  <section id="reviews" class="section-reviews">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow reveal">Témoignages</p>
+        <h2 class="section-title reveal">Ce que disent<br /><em>nos convives</em></h2>
+        <div class="gold-divider reveal" aria-hidden="true"></div>
+      </div>
+
+      <div class="reviews-track">
+        <div class="reviews-slider" id="reviewsSlider">
+
+          <article class="review-card reveal">
+            <div class="review-stars" aria-label="5 étoiles">★★★★★</div>
+            <blockquote>
+              "Une expérience inoubliable. Le Mafé d'Agneau était d'une tendresse et d'une profondeur de saveurs que je n'avais jamais rencontrées en Europe. Le service, l'ambiance, tout était parfait."
+            </blockquote>
+            <footer class="review-author">
+              <div class="review-avatar" aria-hidden="true">A</div>
+              <div>
+                <strong>Amina K.</strong>
+                <span>Cliente fidèle depuis 2019</span>
+              </div>
+            </footer>
+          </article>
+
+          <article class="review-card reveal">
+            <div class="review-stars" aria-label="5 étoiles">★★★★★</div>
+            <blockquote>
+              "Je suis venu pour un dîner d'affaires et mes clients ont été époustouflés. Le cadre est luxueux, la carte des boissons originale et le chef est venu nous saluer personnellement. Un must absolu."
+            </blockquote>
+            <footer class="review-author">
+              <div class="review-avatar" aria-hidden="true">J</div>
+              <div>
+                <strong>Jean-Pierre M.</strong>
+                <span>Dirigeant d'entreprise</span>
+              </div>
+            </footer>
+          </article>
+
+          <article class="review-card reveal">
+            <div class="review-stars" aria-label="5 étoiles">★★★★★</div>
+            <blockquote>
+              "La soirée live du vendredi est magique. On mange, on danse, on voyage. Le Bissap maison est addictif. Le Baobab Gourmand redéfinit ce que signifie dîner dans un restaurant africain à Paris."
+            </blockquote>
+            <footer class="review-author">
+              <div class="review-avatar" aria-hidden="true">S</div>
+              <div>
+                <strong>Sophie L.</strong>
+                <span>Blogueuse gastronomique</span>
+              </div>
+            </footer>
+          </article>
+
+          <article class="review-card reveal">
+            <div class="review-stars" aria-label="5 étoiles">★★★★★</div>
+            <blockquote>
+              "En tant qu'originaire de Dakar, retrouver les saveurs authentiques du Thiéboudienne aussi bien exécutées à Paris me touche profondément. Mamadou a réussi quelque chose d'extraordinaire."
+            </blockquote>
+            <footer class="review-author">
+              <div class="review-avatar" aria-hidden="true">F</div>
+              <div>
+                <strong>Fatou D.</strong>
+                <span>Consultante en mode</span>
+              </div>
+            </footer>
+          </article>
+
+        </div>
+
+        <!-- Contrôles slider -->
+        <div class="slider-controls" aria-label="Contrôles du carrousel">
+          <button class="slider-btn" id="prevBtn" aria-label="Avis précédent">&#8592;</button>
+          <div class="slider-dots" id="sliderDots" aria-label="Navigation par points"></div>
+          <button class="slider-btn" id="nextBtn" aria-label="Avis suivant">&#8594;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section id="contact" class="section-contact">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow reveal">Nous rejoindre</p>
+        <h2 class="section-title reveal">Réservez votre<br /><em>table ce soir</em></h2>
+        <div class="gold-divider reveal" aria-hidden="true"></div>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Infos -->
+        <div class="contact-info reveal">
+          <div class="info-block">
+            <span class="info-icon" aria-hidden="true">📍</span>
+            <div>
+              <strong>Adresse</strong>
+              <p>47 rue des Épices, 75011 Paris</p>
+              <p>Métro : Oberkampf (L5/L9)</p>
+            </div>
+          </div>
+          <div class="info-block">
+            <span class="info-icon" aria-hidden="true">📞</span>
+            <div>
+              <strong>Téléphone</strong>
+              <a href="tel:+33145231567">+33 1 45 23 15 67</a>
+            </div>
+          </div>
+          <div class="info-block">
+            <span class="info-icon" aria-hidden="true">✉️</span>
+            <div>
+              <strong>Email</strong>
+              <a href="mailto:contact@baobab-gourmand.fr">contact@baobab-gourmand.fr</a>
+            </div>
+          </div>
+          <div class="info-block">
+            <span class="info-icon" aria-hidden="true">🕐</span>
+            <div>
+              <strong>Horaires</strong>
+              <p>Mar – Jeu : 12h – 14h30 | 19h – 23h</p>
+              <p>Ven – Dim : 12h – 15h | 19h – 00h</p>
+              <p>Lundi fermé</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulaire -->
+        <div class="contact-form-wrap reveal">
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">Prénom</label>
+                <input type="text" id="fname" name="fname" placeholder="Votre prénom" required autocomplete="given-name" />
+              </div>
+              <div class="form-group">
+                <label for="lname">Nom</label>
+                <input type="text" id="lname" name="lname" placeholder="Votre nom" required autocomplete="family-name" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="votre@email.com" required autocomplete="email" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required />
+              </div>
+              <div class="form-group">
+                <label for="guests">Couverts</label>
+                <select id="guests" name="guests" required>
+                  <option value="">Nombre</option>
+                  <option value="1">1 personne</option>
+                  <option value="2">2 personnes</option>
+                  <option value="3">3 personnes</option>
+                  <option value="4">4 personnes</option>
+                  <option value="5">5 personnes</option>
+                  <option value="6+">6+ personnes</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Message (optionnel)</label>
+              <textarea id="message" name="message" rows="3" placeholder="Occasion spéciale, allergies, demandes particulières…"></textarea>
+            </div>
+            <button type="submit" class="btn-primary btn-full">Envoyer ma réservation</button>
+            <div class="form-success" id="formSuccess" aria-live="polite">
+              ✓ Votre réservation a été envoyée avec succès ! Nous vous confirmons dans les 2h.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="container footer-grid">
+        <!-- Brand -->
+        <div class="footer-brand">
+          <a href="#hero" class="logo footer-logo">
+            <span class="logo-icon">🌳</span>
+            <div class="logo-text">
+              <span class="logo-main">Le Baobab</span>
+              <span class="logo-sub">Gourmand</span>
+            </div>
+          </a>
+          <p>Restaurant africain premium au cœur de Paris. Une cuisine d'exception, une âme d'authenticité.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="TripAdvisor">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8.5 12a3.5 3.5 0 1 0 7 0 3.5 3.5 0 0 0-7 0z" fill="#0A0A0A"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0A0A0A"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Liens rapides -->
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#menu">Notre menu</a></li>
+            <li><a href="#gallery">Galerie</a></li>
+            <li><a href="#reviews">Avis clients</a></li>
+            <li><a href="#contact">Réservation</a></li>
+          </ul>
+        </div>
+
+        <!-- Horaires -->
+        <div class="footer-col">
+          <h4>Horaires</h4>
+          <ul>
+            <li>Lundi — Fermé</li>
+            <li>Mar–Jeu — 12h–14h30 | 19h–23h</li>
+            <li>Ven–Sam — 12h–15h | 19h–00h</li>
+            <li>Dimanche — 12h–15h | 19h–23h</li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>47 rue des Épices, Paris 11e</li>
+            <li><a href="tel:+33145231567">+33 1 45 23 15 67</a></li>
+            <li><a href="mailto:contact@baobab-gourmand.fr">contact@baobab-gourmand.fr</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2024 Le Baobab Gourmand. Tous droits réservés.</p>
+        <div class="footer-legal">
+          <a href="#">Mentions légales</a>
+          <a href="#">Politique de confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== BACK TO TOP ========== -->
+  <button class="back-to-top" id="backToTop" aria-label="Retour en haut">↑</button>
+
+  <!-- JS -->
+  <script>
+/* ============================================================
+   LE BAOBAB GOURMAND — script.js
+   Fonctionnalités :
+   - Loader de page
+   - Navigation sticky & mobile
+   - Scroll reveal animations
+   - Onglets Menu
+   - Slider avis
+   - Formulaire de réservation
+   - Bouton retour en haut
+   ============================================================ */
+
+'use strict';
+
+/* ── HELPERS ── */
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+/* ══════════════════════════════════════════
+   1. LOADER
+══════════════════════════════════════════ */
+(function initLoader() {
+  const loader = $('#loader');
+  if (!loader) return;
+
+  // Masquer le loader après l'animation (1.6s) + délai réseau
+  const hideLoader = () => {
+    loader.classList.add('hidden-loader');
+    // Supprimer du DOM après la transition CSS (0.6s)
+    loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+  };
+
+  if (document.readyState === 'complete') {
+    setTimeout(hideLoader, 400);
+  } else {
+    window.addEventListener('load', () => setTimeout(hideLoader, 400));
+  }
+})();
+
+
+/* ══════════════════════════════════════════
+   2. NAVIGATION — sticky + mobile
+══════════════════════════════════════════ */
+(function initNav() {
+  const header     = $('#header');
+  const burger     = $('#burger');
+  const mobileMenu = $('#mobileMenu');
+  const mobileLinks = $$('.mobile-link, .mobile-reserve');
+
+  if (!header) return;
+
+  /* Sticky class au scroll */
+  const handleScroll = () => {
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  };
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll(); // init
+
+  /* Toggle menu burger */
+  const toggleMenu = (open) => {
+    mobileMenu.classList.toggle('open', open);
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+
+  burger?.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.contains('open');
+    toggleMenu(!isOpen);
+  });
+
+  /* Fermer menu sur lien cliqué */
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => toggleMenu(false));
+  });
+
+  /* Fermer menu si clic extérieur */
+  document.addEventListener('click', (e) => {
+    if (!header.contains(e.target) && mobileMenu.classList.contains('open')) {
+      toggleMenu(false);
+    }
+  });
+
+  /* Smooth scroll sur tous les liens anchor */
+  $$('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const target = $(link.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      const offset = header.offsetHeight;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+})();
+
+
+/* ══════════════════════════════════════════
+   3. SCROLL REVEAL (Intersection Observer)
+══════════════════════════════════════════ */
+(function initReveal() {
+  const elements = $$('.reveal');
+  if (!elements.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // une seule fois
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  elements.forEach(el => observer.observe(el));
+})();
+
+
+/* ══════════════════════════════════════════
+   4. ONGLETS MENU
+══════════════════════════════════════════ */
+(function initMenuTabs() {
+  const tabs    = $$('.tab');
+  const panels  = $$('[id^="tab-"]');
+  if (!tabs.length) return;
+
+  const switchTab = (activeTab) => {
+    const targetId = 'tab-' + activeTab.dataset.tab;
+
+    // Mettre à jour les onglets
+    tabs.forEach(t => {
+      const isActive = t === activeTab;
+      t.classList.toggle('active', isActive);
+      t.setAttribute('aria-selected', String(isActive));
+    });
+
+    // Afficher/masquer les panels
+    panels.forEach(panel => {
+      const show = panel.id === targetId;
+      panel.classList.toggle('hidden', !show);
+
+      // Réactiver les animations reveal dans le panel affiché
+      if (show) {
+        $$('.reveal', panel).forEach(el => {
+          el.classList.remove('visible');
+          // Petit délai pour reset de l'animation
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => el.classList.add('visible'));
+          });
+        });
+      }
+    });
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => switchTab(tab));
+  });
+
+  // Initialiser le premier onglet
+  if (tabs[0]) switchTab(tabs[0]);
+})();
+
+
+/* ══════════════════════════════════════════
+   5. SLIDER AVIS
+══════════════════════════════════════════ */
+(function initSlider() {
+  const slider   = $('#reviewsSlider');
+  const prevBtn  = $('#prevBtn');
+  const nextBtn  = $('#nextBtn');
+  const dotsWrap = $('#sliderDots');
+  if (!slider) return;
+
+  const cards    = $$('.review-card', slider);
+  const total    = cards.length;
+  let current    = 0;
+  let autoTimer  = null;
+
+  /* Déterminer le nombre de cartes visibles selon la largeur */
+  const getVisible = () => {
+    if (window.innerWidth >= 1100) return 3;
+    if (window.innerWidth >= 768)  return 2;
+    return 1;
+  };
+
+  /* Calculer le nombre de positions possibles */
+  const maxIndex = () => Math.max(0, total - getVisible());
+
+  /* Créer les dots */
+  const buildDots = () => {
+    dotsWrap.innerHTML = '';
+    const count = maxIndex() + 1;
+    for (let i = 0; i < count; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'dot' + (i === current ? ' active' : '');
+      dot.setAttribute('aria-label', `Aller à l'avis ${i + 1}`);
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    }
+  };
+
+  /* Aller à un index */
+  const goTo = (index) => {
+    current = Math.max(0, Math.min(index, maxIndex()));
+
+    // Calcul de la largeur d'une carte (y compris gap)
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 24; // correspond au gap CSS (1.5rem)
+    slider.style.transform = `translateX(-${current * (cardWidth + gap)}px)`;
+
+    // Mettre à jour les dots
+    $$('.dot', dotsWrap).forEach((dot, i) => {
+      dot.classList.toggle('active', i === current);
+    });
+
+    resetAuto();
+  };
+
+  const goPrev = () => goTo(current - 1 <= 0 ? maxIndex() : current - 1);
+  const goNext = () => goTo(current + 1 > maxIndex() ? 0 : current + 1);
+
+  /* Auto-play */
+  const startAuto = () => { autoTimer = setInterval(goNext, 5000); };
+  const resetAuto = () => { clearInterval(autoTimer); startAuto(); };
+
+  prevBtn?.addEventListener('click', goPrev);
+  nextBtn?.addEventListener('click', goNext);
+
+  /* Touch / swipe */
+  let touchStartX = 0;
+  slider.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  slider.addEventListener('touchend', e => {
+    const delta = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 50) delta > 0 ? goNext() : goPrev();
+  });
+
+  /* Keyboard */
+  document.addEventListener('keydown', e => {
+    const section = $('#reviews');
+    if (!section) return;
+    const rect = section.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      if (e.key === 'ArrowLeft') goPrev();
+      if (e.key === 'ArrowRight') goNext();
+    }
+  });
+
+  /* Recalcul au resize (debounced) */
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      buildDots();
+      goTo(Math.min(current, maxIndex()));
+    }, 150);
+  });
+
+  /* Init */
+  buildDots();
+  startAuto();
+})();
+
+
+/* ══════════════════════════════════════════
+   6. FORMULAIRE DE RÉSERVATION
+══════════════════════════════════════════ */
+(function initForm() {
+  const form    = $('#contactForm');
+  const success = $('#formSuccess');
+  if (!form) return;
+
+  /* Date minimum = aujourd'hui */
+  const dateInput = $('#date');
+  if (dateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    /* Validation basique */
+    const required = $$('[required]', form);
+    let isValid = true;
+
+    required.forEach(field => {
+      if (!field.value.trim()) {
+        isValid = false;
+        field.style.borderColor = '#e05252';
+        field.addEventListener('input', () => {
+          field.style.borderColor = '';
+        }, { once: true });
+      }
+    });
+
+    if (!isValid) return;
+
+    /* Validation email */
+    const emailField = $('#email');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailField && !emailRegex.test(emailField.value)) {
+      emailField.style.borderColor = '#e05252';
+      return;
+    }
+
+    /* Simuler envoi (pas de backend) */
+    const submitBtn = form.querySelector('[type="submit"]');
+    submitBtn.textContent = 'Envoi en cours…';
+    submitBtn.disabled = true;
+
+    setTimeout(() => {
+      form.reset();
+      success.classList.add('show');
+      submitBtn.textContent = 'Envoyer ma réservation';
+      submitBtn.disabled = false;
+
+      // Masquer le message après 6s
+      setTimeout(() => success.classList.remove('show'), 6000);
+    }, 1200);
+  });
+})();
+
+
+/* ══════════════════════════════════════════
+   7. BOUTON RETOUR EN HAUT
+══════════════════════════════════════════ */
+(function initBackToTop() {
+  const btn = $('#backToTop');
+  if (!btn) return;
+
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 500);
+  }, { passive: true });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+
+
+/* ══════════════════════════════════════════
+   8. ANIMATIONS AVANCÉES AU SCROLL
+══════════════════════════════════════════ */
+(function initScrollAnimations() {
+  /* Parallaxe légère sur le hero bg */
+  const heroBg = $('.hero-bg');
+  if (heroBg) {
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (scrollY < window.innerHeight * 1.5) {
+        heroBg.style.transform = `translateY(${scrollY * 0.25}px)`;
+      }
+    }, { passive: true });
+  }
+
+  /* Gold divider : animation de dessin */
+  const dividers = $$('.gold-divider');
+  if (dividers.length) {
+    const divObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.transition = 'transform 0.8s cubic-bezier(0.16,1,0.3,1)';
+          entry.target.style.transform = 'scaleX(1)';
+          divObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    dividers.forEach(div => {
+      div.style.transform = 'scaleX(0)';
+      div.style.transformOrigin = 'left';
+      divObserver.observe(div);
+    });
+  }
+
+  /* Compteur animé pour les stats */
+  const stats = $$('.stat strong');
+  if (stats.length) {
+    const animateCount = (el, target, suffix) => {
+      const duration = 1500;
+      const step = 16;
+      const steps = duration / step;
+      let current = 0;
+      const inc = target / steps;
+      const timer = setInterval(() => {
+        current = Math.min(current + inc, target);
+        el.textContent = (Number.isInteger(target) ? Math.floor(current) : current.toFixed(1)) + suffix;
+        if (current >= target) clearInterval(timer);
+      }, step);
+    };
+
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const raw = el.textContent.trim();
+          const match = raw.match(/^([\d.]+)(.*)/);
+          if (match) {
+            const num    = parseFloat(match[1]);
+            const suffix = match[2];
+            animateCount(el, num, suffix);
+          }
+          statObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.6 });
+
+    stats.forEach(s => statObserver.observe(s));
+  }
+})();
+
+
+/* ══════════════════════════════════════════
+   9. GALERIE — lightbox simple
+══════════════════════════════════════════ */
+(function initGallery() {
+  const items = $$('.g-item');
+  if (!items.length) return;
+
+  /* Créer le lightbox */
+  const lb = document.createElement('div');
+  lb.id = 'lightbox';
+  lb.style.cssText = `
+    display:none; position:fixed; inset:0; z-index:9000;
+    background:rgba(0,0,0,0.92); align-items:center; justify-content:center;
+    cursor:zoom-out;
+  `;
+  const lbImg = document.createElement('div');
+  lbImg.style.cssText = `
+    width:min(90vw,900px); height:min(80vh,600px);
+    background-size:cover; background-position:center;
+    border-radius:8px; box-shadow:0 32px 80px rgba(0,0,0,0.8);
+    pointer-events:none;
+  `;
+  lb.appendChild(lbImg);
+  document.body.appendChild(lb);
+
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const bg = getComputedStyle(item).backgroundImage;
+      lbImg.style.backgroundImage = bg;
+      lb.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  lb.addEventListener('click', () => {
+    lb.style.display = 'none';
+    document.body.style.overflow = '';
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lb.style.display !== 'none') {
+      lb.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centre Médical Onsl | Ouagadougou</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --ink: #0D1B2A;
+            --cream: #F5F0E8;
+            --warm: #E8DFD0;
+            --gold: #C8963E;
+            --gold-light: #E8B96A;
+            --teal: #1A6B5C;
+            --teal-light: #2D9B84;
+            --red: #C0392B;
+            --muted: #7A7468;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { font-size: 16px; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+
+        /* ─── GRAIN OVERLAY ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
+        }
+
+        /* ─── TYPOGRAPHY ─── */
+        h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.15; }
+        .mono { font-family: 'Space Mono', monospace; }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            padding: 0 2.5rem;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.4s, border-bottom 0.4s;
+        }
+
+        nav.scrolled {
+            background: rgba(245, 240, 232, 0.95);
+            border-bottom: 1px solid rgba(13,27,42,0.1);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--ink);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo .pulse-dot {
+            width: 10px; height: 10px;
+            background: var(--teal);
+            border-radius: 50%;
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(26,107,92,0.5); }
+            70% { box-shadow: 0 0 0 10px rgba(26,107,92,0); }
+            100% { box-shadow: 0 0 0 0 rgba(26,107,92,0); }
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--ink);
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 0; height: 1px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            background: var(--ink) !important;
+            color: var(--cream) !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 2px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem !important;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-cta::after { display: none !important; }
+        .nav-cta:hover { background: var(--teal) !important; }
+
+        /* ─── HERO ─── */
+        #accueil {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: var(--ink);
+            overflow: hidden;
+        }
+
+        .hero-left {
+            padding: 10rem 4rem 6rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            opacity: 0;
+            animation: fadeUp 0.8s forwards 0.2s;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 32px; height: 1px;
+            background: var(--gold);
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 5vw, 5rem);
+            color: var(--cream);
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s forwards 0.4s;
+        }
+
+        .hero-title em {
+            color: var(--gold-light);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            color: rgba(245,240,232,0.6);
+            font-size: 1rem;
+            max-width: 400px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s forwards 0.6s;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            opacity: 0;
+            animation: fadeUp 0.8s forwards 0.8s;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--teal);
+            color: white;
+            text-decoration: none;
+            padding: 0.875rem 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            transition: background 0.25s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover { background: var(--teal-light); transform: translateY(-2px); }
+
+        .btn-outline {
+            display: inline-block;
+            border: 1px solid rgba(245,240,232,0.3);
+            color: var(--cream);
+            text-decoration: none;
+            padding: 0.875rem 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            transition: border-color 0.25s, background 0.25s;
+        }
+
+        .btn-outline:hover { border-color: var(--cream); background: rgba(245,240,232,0.05); }
+
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-right img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            filter: grayscale(20%) brightness(0.8);
+        }
+
+        .hero-right::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, var(--ink) 0%, transparent 40%);
+            z-index: 1;
+        }
+
+        .hero-badge {
+            position: absolute;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            z-index: 2;
+            background: var(--gold);
+            color: var(--ink);
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .hero-badge .big { font-size: 2rem; font-weight: 700; line-height: 1; }
+        .hero-badge .small { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+        /* ─── STATS BAR ─── */
+        .stats-bar {
+            background: var(--teal);
+            display: flex;
+            justify-content: space-around;
+            padding: 2rem;
+        }
+
+        .stat-item { text-align: center; color: white; }
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.25rem;
+            font-weight: 700;
+            display: block;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.75;
+            margin-top: 0.25rem;
+        }
+
+        /* ─── SECTION SHARED ─── */
+        .section { padding: 7rem 0; }
+        .section-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-label::before {
+            content: '';
+            display: block;
+            width: 24px; height: 1px;
+            background: var(--gold);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--ink);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ─── SERVICES ─── */
+        #services { background: var(--warm); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5px;
+            background: var(--ink);
+            border: 1.5px solid var(--ink);
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--cream);
+            padding: 2.5rem 2rem;
+            transition: background 0.3s, color 0.3s;
+            cursor: default;
+        }
+
+        .service-card:hover { background: var(--ink); color: var(--cream); }
+
+        .service-icon {
+            width: 52px; height: 52px;
+            border: 1.5px solid currentColor;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: background 0.3s, color 0.3s;
+            font-size: 1.25rem;
+            color: var(--teal);
+        }
+
+        .service-card:hover .service-icon { color: var(--gold-light); border-color: var(--gold-light); }
+
+        .service-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        .service-card:hover p { color: rgba(245,240,232,0.65); }
+
+        .service-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            opacity: 0.4;
+        }
+
+        /* ─── ABOUT ─── */
+        #propos .section-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-img-wrap {
+            position: relative;
+        }
+
+        .about-img-wrap img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-img-frame {
+            position: absolute;
+            bottom: -1.5rem;
+            right: -1.5rem;
+            width: 80%;
+            height: 80%;
+            border: 2px solid var(--gold);
+            z-index: -1;
+        }
+
+        .about-tag {
+            position: absolute;
+            top: 2rem;
+            left: -2rem;
+            background: var(--teal);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+        }
+
+        .about-text p {
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkmarks { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+        .checkmarks li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+        .checkmarks li::before {
+            content: '→';
+            color: var(--gold);
+            font-family: 'Space Mono', monospace;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ─── TESTIMONIALS ─── */
+        #temoignages { background: var(--ink); }
+
+        #temoignages .section-label { color: var(--gold); }
+        #temoignages .section-title { color: var(--cream); }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            border: 1px solid rgba(245,240,232,0.12);
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 1.5rem; right: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--gold);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .testimonial-card p {
+            color: rgba(245,240,232,0.7);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+        }
+
+        .stars {
+            color: var(--gold-light);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ─── RDV ─── */
+        #rdv { background: var(--cream); }
+
+        .rdv-wrap {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 0;
+            border: 1.5px solid var(--ink);
+            margin-top: 3rem;
+        }
+
+        .rdv-info {
+            background: var(--ink);
+            color: var(--cream);
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .rdv-info h3 {
+            font-size: 2rem;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .rdv-info p {
+            color: rgba(245,240,232,0.6);
+            font-size: 0.875rem;
+            line-height: 1.7;
+        }
+
+        .rdv-contacts { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+        .rdv-contact {
+            display: flex; align-items: center; gap: 0.75rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(245,240,232,0.65);
+        }
+        .rdv-contact i { color: var(--gold); width: 16px; }
+
+        .rdv-form { padding: 3rem; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+
+        .form-group { display: flex; flex-direction: column; gap: 0.375rem; margin-bottom: 1rem; }
+
+        .form-group label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .form-group input,
+        .form-group select {
+            border: 1.5px solid rgba(13,27,42,0.2);
+            background: transparent;
+            padding: 0.75rem 1rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            color: var(--ink);
+            outline: none;
+            transition: border-color 0.2s;
+            appearance: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus { border-color: var(--teal); }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--teal);
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.25s, transform 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-submit:hover { background: var(--teal-light); transform: translateY(-1px); }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: #080F18;
+            color: rgba(245,240,232,0.5);
+            padding: 5rem 0 2rem;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid rgba(245,240,232,0.08);
+        }
+
+        .footer-brand .logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.25rem;
+            color: var(--cream);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.875rem;
+            line-height: 1.7;
+            max-width: 280px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-socials { display: flex; gap: 0.75rem; }
+        .social-link {
+            width: 36px; height: 36px;
+            border: 1px solid rgba(245,240,232,0.15);
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(245,240,232,0.5);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+        }
+        .social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+        .footer-col h5 {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--cream);
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+        .footer-col ul a {
+            text-decoration: none;
+            color: rgba(245,240,232,0.5);
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        .footer-col ul a:hover { color: var(--gold-light); }
+
+        .footer-col .contact-item {
+            display: flex; align-items: flex-start; gap: 0.75rem;
+            font-size: 0.8rem; line-height: 1.5;
+        }
+        .footer-col .contact-item i { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+        }
+
+        /* ─── WHATSAPP FLOAT ─── */
+        .wa-float {
+            position: fixed;
+            bottom: 2rem; right: 2rem;
+            background: #25D366;
+            color: white;
+            width: 56px; height: 56px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            z-index: 200;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+        }
+
+        .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
+
+        /* ─── MOBILE ─── */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px; height: 2px;
+            background: var(--ink);
+            transition: all 0.3s;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 72px; left: 0; right: 0;
+            background: var(--cream);
+            border-top: 1px solid rgba(13,27,42,0.1);
+            padding: 1.5rem 2rem;
+            z-index: 99;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--ink);
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(13,27,42,0.08);
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            #accueil { grid-template-columns: 1fr; min-height: auto; }
+            .hero-left { padding: 9rem 2rem 4rem; }
+            .hero-right { height: 45vh; }
+            .hero-badge { width: 90px; height: 90px; bottom: 1.5rem; right: 1.5rem; }
+            .hero-badge .big { font-size: 1.5rem; }
+            .services-grid { grid-template-columns: 1fr 1fr; }
+            #propos .section-inner { grid-template-columns: 1fr; gap: 4rem; }
+            .about-tag { display: none; }
+            .rdv-wrap { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+            .footer-brand { grid-column: span 2; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 1.25rem; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .stats-bar { flex-wrap: wrap; gap: 2rem; padding: 2rem 1.5rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; }
+            .footer-brand { grid-column: auto; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .rdv-form { padding: 2rem 1.5rem; }
+            .hero-left { padding: 8rem 1.5rem 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav id="navbar">
+        <a href="#accueil" class="nav-logo">
+            <div class="pulse-dot"></div>
+            ONSL
+        </a>
+        <ul class="nav-links">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#propos">À propos</a></li>
+            <li><a href="#rdv">Contact</a></li>
+            <li><a href="#rdv" class="nav-cta">Rendez-vous</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#accueil">Accueil</a>
+        <a href="#services">Services</a>
+        <a href="#propos">À propos</a>
+        <a href="#rdv">Prendre RDV</a>
+    </div>
+
+    <!-- HERO -->
+    <section id="accueil">
+        <div class="hero-left">
+            <p class="hero-eyebrow">Ouagadougou · Burkina Faso</p>
+            <h1 class="hero-title">
+                Soins <em>humains,</em><br>
+                résultats<br>
+                d'excellence.
+            </h1>
+            <p class="hero-subtitle">
+                Le Centre Médical Onsl réunit expertise médicale spécialisée, équipements de pointe et une attention sincère envers chaque patient.
+            </p>
+            <div class="hero-actions">
+                <a href="#rdv" class="btn-primary">Prendre rendez-vous</a>
+                <a href="#services" class="btn-outline">Nos services</a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200" alt="Centre médical moderne">
+            <div class="hero-badge">
+                <span class="big">24h</span>
+                <span class="small">Urgences<br>ouvert</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+        <div class="stat-item reveal">
+            <span class="stat-num">12+</span>
+            <span class="stat-label">Spécialistes</span>
+        </div>
+        <div class="stat-item reveal" style="transition-delay: 0.1s">
+            <span class="stat-num">98%</span>
+            <span class="stat-label">Satisfaction patient</span>
+        </div>
+        <div class="stat-item reveal" style="transition-delay: 0.2s">
+            <span class="stat-num">10k+</span>
+            <span class="stat-label">Patients suivis</span>
+        </div>
+        <div class="stat-item reveal" style="transition-delay: 0.3s">
+            <span class="stat-num">8+</span>
+            <span class="stat-label">Années d'expérience</span>
+        </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+        <div class="section-inner">
+            <p class="section-label reveal">Ce que nous faisons</p>
+            <h2 class="section-title reveal">Services<br>spécialisés</h2>
+            <p style="color: var(--muted); max-width: 480px; line-height: 1.7; font-size: 0.95rem;" class="reveal">
+                Un plateau technique complet pour vous accompagner à chaque étape, du diagnostic au traitement.
+            </p>
+
+            <div class="services-grid reveal">
+                <div class="service-card">
+                    <div class="service-num">01</div>
+                    <div class="service-icon"><i class="fas fa-stethoscope"></i></div>
+                    <h3>Consultation<br>Générale</h3>
+                    <p>Prise en charge complète pour toute la famille. Suivi médical rigoureux et personnalisé.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-num">02</div>
+                    <div class="service-icon"><i class="fas fa-ambulance"></i></div>
+                    <h3>Urgences<br>24h/24</h3>
+                    <p>Une équipe réactive et formée aux situations critiques, disponible nuit et jour.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-num">03</div>
+                    <div class="service-icon"><i class="fas fa-vial"></i></div>
+                    <h3>Laboratoire<br>d'Analyses</h3>
+                    <p>Bilans biomédicaux précis. Résultats rapides transmis en toute sécurité.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-num">04</div>
+                    <div class="service-icon"><i class="fas fa-pills"></i></div>
+                    <h3>Pharmacie<br>Intégrée</h3>
+                    <p>Médicaments essentiels disponibles immédiatement sur place après consultation.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-num">05</div>
+                    <div class="service-icon"><i class="fas fa-baby"></i></div>
+                    <h3>Pédiatrie</h3>
+                    <p>Soins dédiés aux enfants dans un cadre rassurant, du nourrisson à l'adolescent.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-num">06</div>
+                    <div class="service-icon"><i class="fas fa-venus"></i></div>
+                    <h3>Gynécologie</h3>
+                    <p>Suivi prénatal, consultations gynécologiques et planning familial.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-num">07</div>
+                    <div class="service-icon"><i class="fas fa-x-ray"></i></div>
+                    <h3>Imagerie<br>Médicale</h3>
+                    <p>Radiographie, échographie — pour un diagnostic précis et rapide.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-num">08</div>
+                    <div class="service-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h3>Cardiologie</h3>
+                    <p>Bilan cardiaque, ECG et suivi des pathologies cardiovasculaires.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="propos" class="section" style="background: var(--cream);">
+        <div class="section-inner">
+            <div class="about-img-wrap reveal">
+                <div class="about-tag">Centre Médical</div>
+                <img src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=80&w=800" alt="Équipe médicale Onsl">
+                <div class="about-img-frame"></div>
+            </div>
+            <div class="about-text reveal" style="transition-delay: 0.15s">
+                <p class="section-label">Notre histoire</p>
+                <h2 class="section-title">Humaniser<br>la médecine.</h2>
+                <p>
+                    Situé au cœur de Ouagadougou, le Centre Médical Onsl est né d'une conviction simple&nbsp;: les soins de qualité ne doivent pas être un privilège. Depuis plus de huit ans, nous servons notre communauté avec rigueur, chaleur et innovation.
+                </p>
+                <p>
+                    Notre équipe de spécialistes partage un engagement commun — écouter avant de prescrire, comprendre avant de traiter.
+                </p>
+                <ul class="checkmarks">
+                    <li><strong>Mission :</strong> Des soins accessibles et dignes pour tous les citoyens.</li>
+                    <li><strong>Vision :</strong> Devenir la référence sanitaire de la sous-région ouest-africaine.</li>
+                    <li><strong>Valeurs :</strong> Humanité, rigueur, innovation et confiance.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="temoignages" class="section">
+        <div class="section-inner">
+            <p class="section-label reveal">Ils nous font confiance</p>
+            <h2 class="section-title reveal" style="color: var(--cream);">Ce que disent<br>nos patients.</h2>
+            <div class="testimonials-grid reveal">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>Une prise en charge très rapide et une équipe vraiment à l'écoute. J'ai été reçu le jour même pour une urgence. Je recommande vivement le Centre Onsl.</p>
+                    <span class="testimonial-author">— Moussa T., Ouagadougou</span>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>Le laboratoire est très moderne et les résultats m'ont été communiqués rapidement. Le médecin a pris le temps d'expliquer chaque analyse. Très professionnel.</p>
+                    <span class="testimonial-author">— Fatou K., Bobo-Dioulasso</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RDV -->
+    <section id="rdv" class="section" style="background: var(--warm);">
+        <div class="section-inner">
+            <p class="section-label reveal">Nous contacter</p>
+            <h2 class="section-title reveal">Prenez rendez-vous<br>en ligne.</h2>
+            <div class="rdv-wrap reveal">
+                <div class="rdv-info">
+                    <div>
+                        <h3>Votre santé<br>commence ici.</h3>
+                        <p>Remplissez le formulaire, notre secrétariat vous recontacte sous 24h pour confirmer votre rendez-vous.</p>
+                    </div>
+                    <div class="rdv-contacts">
+                        <div class="rdv-contact"><i class="fas fa-map-marker-alt"></i> Secteur 15, Ouagadougou</div>
+                        <div class="rdv-contact"><i class="fas fa-phone"></i> +226 25 30 00 00</div>
+                        <div class="rdv-contact"><i class="fab fa-whatsapp"></i> +226 70 XX XX XX</div>
+                        <div class="rdv-contact"><i class="fas fa-envelope"></i> contact@onsl-sante.bf</div>
+                        <div class="rdv-contact"><i class="fas fa-clock"></i> Urgences ouvertes 24h/7j</div>
+                    </div>
+                </div>
+                <div class="rdv-form">
+                    <form id="bookingForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nom complet</label>
+                                <input type="text" placeholder="Ex : Aminata Ouédraogo" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Téléphone</label>
+                                <input type="tel" placeholder="+226 XX XX XX XX" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Service souhaité</label>
+                            <select required>
+                                <option value="">Sélectionner un service</option>
+                                <option>Consultation Générale</option>
+                                <option>Pédiatrie</option>
+                                <option>Gynécologie</option>
+                                <option>Cardiologie</option>
+                                <option>Analyse Laboratoire</option>
+                                <option>Imagerie Médicale</option>
+                                <option>Urgence</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Date préférée</label>
+                                <input type="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Heure préférée</label>
+                                <select>
+                                    <option>Matin (7h – 12h)</option>
+                                    <option>Après-midi (13h – 18h)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            Envoyer la demande →
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="logo">CENTRE MÉDICAL ONSL</span>
+                    <p>Votre partenaire de confiance pour une vie plus saine à Ouagadougou. Qualité, humanité, innovation.</p>
+                    <div class="footer-socials">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/22670000000" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h5>Navigation</h5>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#propos">À propos</a></li>
+                        <li><a href="#rdv">Rendez-vous</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li>
+                            <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Secteur 15, Ouagadougou, Burkina Faso</div>
+                        </li>
+                        <li>
+                            <div class="contact-item"><i class="fas fa-phone"></i> +226 25 30 00 00</div>
+                        </li>
+                        <li>
+                            <div class="contact-item"><i class="fas fa-envelope"></i> contact@onsl-sante.bf</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Centre Médical Onsl · Tous droits réservés</span>
+                <span style="color: rgba(245,240,232,0.25)">Ouagadougou · Burkina Faso</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WA FLOAT -->
+    <a href="https://wa.me/22670000000" class="wa-float" target="_blank" title="Nous contacter sur WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Nav scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        mobileMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        });
+
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        reveals.forEach(el => observer.observe(el));
+
+        // Form submit
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('.btn-submit');
+            btn.textContent = '✓ Demande envoyée !';
+            btn.style.background = 'var(--teal)';
+            btn.disabled = true;
+            setTimeout(() => {
+                this.reset();
+                btn.textContent = 'Envoyer la demande →';
+                btn.style.background = '';
+                btn.disabled = false;
+            }, 4000);
+        });
+    </script>
+
+</body>
+</html>

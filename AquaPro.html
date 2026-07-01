@@ -1,0 +1,2422 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Expert en plomberie au Burkina Faso. Installation, dépannage et réparation de plomberie pour maisons, bureaux et commerces à Ouagadougou et partout au Burkina."/>
+  <meta name="keywords" content="plomberie Burkina Faso, plombier Ouagadougou, réparation fuite eau, débouchage canalisation, installation robinet, chauffe-eau Burkina"/>
+  <meta name="author" content="AquaPro Burkina"/>
+  <meta property="og:title" content="AquaPro – Expert en plomberie au Burkina Faso"/>
+  <meta property="og:description" content="Installation, dépannage et réparation de plomberie professionnelle."/>
+  <title>AquaPro – Expert en Plomberie au Burkina Faso</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════
+       RESET & VARIABLES
+    ═══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:        #1A4FAB;
+      --blue-dark:   #0F2D6B;
+      --blue-light:  #3B72D4;
+      --blue-pale:   #EEF3FB;
+      --orange:      #F97316;
+      --orange-dark: #EA580C;
+      --orange-light:#FED7AA;
+      --white:       #FFFFFF;
+      --off-white:   #F8FAFF;
+      --gray-100:    #F1F5F9;
+      --gray-200:    #E2E8F0;
+      --gray-400:    #94A3B8;
+      --gray-600:    #475569;
+      --gray-800:    #1E293B;
+      --text:        #0F172A;
+
+      --shadow-sm:   0 2px 8px rgba(15,45,107,0.08);
+      --shadow-md:   0 8px 30px rgba(15,45,107,0.12);
+      --shadow-lg:   0 20px 60px rgba(15,45,107,0.18);
+      --radius:      16px;
+      --radius-sm:   10px;
+      --radius-lg:   28px;
+      --transition:  0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    ul { list-style: none; }
+
+    /* ═══════════════════════════════════════
+       UTILITIES
+    ═══════════════════════════════════════ */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue-pale);
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+
+    .section-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    .section-title span { color: var(--orange); }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--gray-600);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-top: 12px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--orange);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 14px 28px;
+      border-radius: 50px;
+      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(249,115,22,0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--orange-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(249,115,22,0.45);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 13px 28px;
+      border-radius: 50px;
+      border: 2px solid rgba(255,255,255,0.6);
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.15);
+      border-color: var(--white);
+    }
+
+    /* Fade-in animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ═══════════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════════ */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-sm);
+      padding: 10px 0;
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: var(--blue);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled .logo-icon { background: var(--blue); }
+
+    .logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--white);
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled .logo-text { color: var(--blue-dark); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .navbar.scrolled .nav-links a { color: var(--gray-600); }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--orange);
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+
+    .nav-links a:hover { color: var(--white); }
+    .navbar.scrolled .nav-links a:hover { color: var(--blue); }
+
+    .nav-cta {
+      background: var(--orange);
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      box-shadow: 0 4px 14px rgba(249,115,22,0.35);
+    }
+
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--orange-dark) !important; color: var(--white) !important; transform: translateY(-1px); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 6px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled .hamburger span { background: var(--blue-dark); }
+
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--blue-dark);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--white);
+      transition: var(--transition);
+    }
+
+    .mobile-menu a:hover { color: var(--orange); }
+
+    .mobile-close {
+      position: absolute;
+      top: 24px; right: 24px;
+      color: var(--white);
+      font-size: 1.8rem;
+      background: none; border: none; cursor: pointer;
+    }
+
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 120px 0 80px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1200&q=85&fit=crop&crop=center');
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg,
+        rgba(10,30,80,0.92) 0%,
+        rgba(15,45,107,0.82) 40%,
+        rgba(26,79,171,0.55) 70%,
+        rgba(26,79,171,0.15) 100%
+      );
+      z-index: 1;
+    }
+
+    /* Decorative shapes */
+    .hero-shape {
+      position: absolute;
+      z-index: 1;
+    }
+
+    .hero-shape-1 {
+      bottom: -80px; right: -80px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(249,115,22,0.18) 0%, transparent 70%);
+    }
+
+    .hero-shape-2 {
+      top: 20%; left: 55%;
+      width: 200px; height: 200px;
+      border: 2px solid rgba(255,255,255,0.08);
+      border-radius: 50%;
+      animation: floatSlow 8s ease-in-out infinite;
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(249,115,22,0.2);
+      border: 1px solid rgba(249,115,22,0.5);
+      color: #FED7AA;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .hero-badge .dot {
+      width: 7px; height: 7px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.7; }
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 20px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .hero h1 span { color: var(--orange); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      color: rgba(255,255,255,0.78);
+      line-height: 1.72;
+      margin-bottom: 40px;
+      max-width: 520px;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 56px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+
+    .stat-item {}
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .stat-num span { color: var(--orange); }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .scroll-dot {
+      width: 28px; height: 44px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 14px;
+      display: flex;
+      justify-content: center;
+      padding-top: 6px;
+    }
+
+    .scroll-dot::after {
+      content: '';
+      width: 4px; height: 8px;
+      background: var(--orange);
+      border-radius: 2px;
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateY(0); opacity: 1; }
+      50% { transform: translateY(12px); opacity: 0.3; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══════════════════════════════════════
+       TRUST BAR
+    ═══════════════════════════════════════ */
+    .trust-bar {
+      background: var(--blue-dark);
+      padding: 20px 0;
+    }
+
+    .trust-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .trust-item .icon {
+      width: 32px; height: 32px;
+      background: rgba(249,115,22,0.2);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    /* ═══════════════════════════════════════
+       SERVICES
+    ═══════════════════════════════════════ */
+    .services {
+      padding: 100px 0;
+      background: var(--off-white);
+    }
+
+    .services-head {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .services-head .section-sub {
+      margin: 12px auto 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      cursor: default;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .service-img {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .service-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .service-card:hover .service-img img { transform: scale(1.07); }
+
+    .service-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,45,107,0.6), transparent);
+    }
+
+    .service-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 1.2rem;
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .service-body {
+      padding: 24px;
+    }
+
+    .service-body h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      margin-bottom: 8px;
+    }
+
+    .service-body p {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .service-link:hover { color: var(--orange); gap: 10px; }
+
+    /* ═══════════════════════════════════════
+       WHY US
+    ═══════════════════════════════════════ */
+    .why {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .why-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .why-img-wrap {
+      position: relative;
+    }
+
+    .why-img-main {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 520px;
+    }
+
+    .why-img-main img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .why-img-badge {
+      position: absolute;
+      bottom: -24px; right: -24px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      max-width: 220px;
+    }
+
+    .why-badge-icon {
+      width: 52px; height: 52px;
+      background: var(--orange);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .why-badge-text strong {
+      display: block;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--blue-dark);
+      line-height: 1;
+    }
+
+    .why-badge-text span {
+      font-size: 0.78rem;
+      color: var(--gray-600);
+    }
+
+    .why-img-tag {
+      position: absolute;
+      top: 24px; left: -24px;
+      background: var(--blue);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 50px;
+      box-shadow: 0 4px 16px rgba(26,79,171,0.4);
+    }
+
+    .why-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 36px;
+    }
+
+    .why-item {
+      background: var(--blue-pale);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      transition: var(--transition);
+    }
+
+    .why-item:hover {
+      background: var(--blue);
+      transform: translateY(-4px);
+    }
+
+    .why-item:hover .why-item-title,
+    .why-item:hover .why-item-text { color: var(--white); }
+
+    .why-icon {
+      width: 44px; height: 44px;
+      background: var(--white);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .why-item:hover .why-icon {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .why-item-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      margin-bottom: 6px;
+      transition: var(--transition);
+    }
+
+    .why-item-text {
+      font-size: 0.83rem;
+      color: var(--gray-600);
+      line-height: 1.5;
+      transition: var(--transition);
+    }
+
+    /* ═══════════════════════════════════════
+       GALLERY
+    ═══════════════════════════════════════ */
+    .gallery {
+      padding: 100px 0;
+      background: var(--off-white);
+    }
+
+    .gallery-head {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 16px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: var(--radius);
+      position: relative;
+      cursor: zoom-in;
+    }
+
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img { transform: scale(1.06); }
+
+    .gallery-item .caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(15,45,107,0.85), transparent);
+      color: var(--white);
+      padding: 28px 18px 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transform: translateY(100%);
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover .caption { transform: translateY(0); }
+
+    .g1 { grid-column: 1/6;  height: 300px; }
+    .g2 { grid-column: 6/9;  height: 300px; }
+    .g3 { grid-column: 9/13; height: 300px; }
+    .g4 { grid-column: 1/5;  height: 280px; }
+    .g5 { grid-column: 5/9;  height: 280px; }
+    .g6 { grid-column: 9/13; height: 280px; }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: var(--radius);
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px; right: 24px;
+      color: var(--white);
+      font-size: 2rem;
+      cursor: pointer;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+    }
+
+    .lightbox-close:hover { background: var(--orange); }
+
+    /* ═══════════════════════════════════════
+       TESTIMONIALS
+    ═══════════════════════════════════════ */
+    .testimonials {
+      padding: 100px 0;
+      background: var(--blue-dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials::before {
+      content: '"';
+      position: absolute;
+      top: -60px; left: -20px;
+      font-family: 'Syne', serif;
+      font-size: 30rem;
+      color: rgba(255,255,255,0.02);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .testimonials-head {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .testimonials-head .section-tag {
+      background: rgba(249,115,22,0.2);
+      color: var(--orange-light);
+    }
+
+    .testimonials-head .section-title { color: var(--white); }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .testi-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+
+    .testi-card:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-4px);
+    }
+
+    .testi-stars {
+      color: #FCD34D;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .testi-text {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.75;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .testi-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--orange);
+      flex-shrink: 0;
+    }
+
+    .testi-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .testi-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .testi-role {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      margin-top: 2px;
+    }
+
+    /* ═══════════════════════════════════════
+       FAQ
+    ═══════════════════════════════════════ */
+    .faq {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .faq-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .faq-left .section-sub { margin-top: 12px; }
+
+    .faq-cta {
+      margin-top: 32px;
+    }
+
+    .faq-list { }
+
+    .faq-item {
+      border-bottom: 1.5px solid var(--gray-200);
+    }
+
+    .faq-q {
+      width: 100%;
+      background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px;
+      padding: 22px 0;
+      text-align: left;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    .faq-q:hover { color: var(--blue); }
+
+    .faq-icon {
+      width: 32px; height: 32px;
+      background: var(--blue-pale);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue);
+      font-size: 1.1rem;
+      font-weight: 400;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .faq-item.open .faq-icon {
+      background: var(--orange);
+      color: var(--white);
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      font-size: 0.93rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      transition: max-height 0.35s ease, padding 0.3s;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      padding-bottom: 20px;
+    }
+
+    /* ═══════════════════════════════════════
+       CONTACT
+    ═══════════════════════════════════════ */
+    .contact {
+      padding: 100px 0;
+      background: var(--off-white);
+    }
+
+    .contact-head {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .contact-head .section-sub { margin: 12px auto 0; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .contact-form-wrap {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 44px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      margin-bottom: 28px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      margin-bottom: 7px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.93rem;
+      color: var(--text);
+      background: var(--white);
+      transition: var(--transition);
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(26,79,171,0.1);
+    }
+
+    .form-group input.error,
+    .form-group textarea.error { border-color: #EF4444; }
+
+    .form-error-msg {
+      font-size: 0.78rem;
+      color: #EF4444;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .form-submit {
+      width: 100%;
+      padding: 15px;
+      background: var(--blue);
+      color: var(--white);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .form-submit:hover { background: var(--orange); transform: translateY(-2px); }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .form-success .check { font-size: 3rem; margin-bottom: 10px; }
+
+    .form-success p {
+      color: var(--blue-dark);
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    /* Contact info */
+    .contact-info-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-info-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .ci-icon {
+      width: 48px; height: 48px;
+      background: var(--blue-pale);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      color: var(--blue);
+    }
+
+    .ci-text strong {
+      display: block;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    .ci-text span {
+      font-size: 0.93rem;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+
+    .ci-text a { color: var(--blue); }
+    .ci-text a:hover { color: var(--orange); }
+
+    .contact-action-btns {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-whatsapp {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      background: #25D366;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding: 13px 20px;
+      border-radius: 50px;
+      transition: var(--transition);
+    }
+
+    .btn-whatsapp:hover { background: #128C7E; transform: translateY(-2px); }
+
+    .btn-call {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding: 13px 20px;
+      border-radius: 50px;
+      transition: var(--transition);
+    }
+
+    .btn-call:hover { background: var(--blue-dark); transform: translateY(-2px); }
+
+    /* Map */
+    .map-wrap {
+      border-radius: var(--radius);
+      overflow: hidden;
+      height: 200px;
+      background: var(--gray-100);
+    }
+
+    .map-wrap iframe {
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    .footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.65);
+      padding: 70px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+
+    .footer-brand .logo-text { color: var(--white); }
+    .footer-brand .logo-icon { background: var(--orange); }
+
+    .footer-desc {
+      margin-top: 16px;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .social-btn {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+      transition: var(--transition);
+    }
+
+    .social-btn:hover {
+      background: var(--orange);
+      color: var(--white);
+      transform: translateY(-3px);
+    }
+
+    .footer-col h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .footer-links a::before {
+      content: '→';
+      font-size: 0.75rem;
+      color: var(--orange);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover { color: var(--white); padding-left: 8px; }
+    .footer-links a:hover::before { opacity: 1; }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 14px;
+    }
+
+    .footer-contact-item .ico {
+      color: var(--orange);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p { font-size: 0.82rem; }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-bottom-links a {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      transition: var(--transition);
+    }
+
+    .footer-bottom-links a:hover { color: var(--orange); }
+
+    /* ═══════════════════════════════════════
+       FLOATING BUTTONS
+    ═══════════════════════════════════════ */
+    .float-whatsapp {
+      position: fixed;
+      bottom: 90px; right: 24px;
+      z-index: 900;
+      width: 56px; height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      color: var(--white);
+      box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+      transition: var(--transition);
+      animation: floatBounce 3s ease-in-out infinite;
+    }
+
+    @keyframes floatBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .float-whatsapp:hover {
+      background: #128C7E;
+      transform: scale(1.1);
+      animation: none;
+    }
+
+    .float-top {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      z-index: 900;
+      width: 48px; height: 48px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white);
+      font-size: 1.1rem;
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      transition: var(--transition);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .float-top.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .float-top:hover { background: var(--orange); transform: translateY(-3px); }
+
+    /* Tooltip */
+    .float-whatsapp::before {
+      content: 'Contactez-nous';
+      position: absolute;
+      right: 64px;
+      background: var(--text);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+    }
+
+    .float-whatsapp:hover::before { opacity: 1; }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .why-inner { grid-template-columns: 1fr; gap: 50px; }
+      .why-img-wrap { display: none; }
+      .faq-inner { grid-template-columns: 1fr; gap: 40px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+
+      .g1 { grid-column: 1/7; }
+      .g2 { grid-column: 7/13; }
+      .g3 { grid-column: 1/7; }
+      .g4 { grid-column: 7/13; }
+      .g5 { grid-column: 1/7; }
+      .g6 { grid-column: 7/13; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .hero-stats { gap: 24px; }
+
+      .services-grid { grid-template-columns: 1fr; }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .g1, .g2, .g3, .g4, .g5, .g6 {
+        grid-column: auto;
+        height: 200px;
+      }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+
+      .contact-action-btns { flex-direction: column; }
+
+      .why-items { grid-template-columns: 1fr; }
+
+      .trust-inner { gap: 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-buttons { flex-direction: column; }
+      .btn-primary, .btn-secondary { justify-content: center; }
+
+      .gallery-grid { grid-template-columns: 1fr; }
+      .g1, .g2, .g3, .g4, .g5, .g6 {
+        grid-column: 1 / -1;
+        height: 220px;
+      }
+
+      .contact-form-wrap { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════ NAVBAR ════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="container navbar-inner">
+    <a href="#accueil" class="logo">
+      <div class="logo-icon">🔧</div>
+      <span class="logo-text">AquaPro</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#accueil" class="active">Accueil</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pourquoi">Pourquoi nous</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#temoignages">Avis</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact" class="nav-cta">Devis gratuit</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#accueil"     onclick="closeMobile()">Accueil</a>
+  <a href="#services"    onclick="closeMobile()">Services</a>
+  <a href="#pourquoi"    onclick="closeMobile()">Pourquoi nous</a>
+  <a href="#galerie"     onclick="closeMobile()">Galerie</a>
+  <a href="#temoignages" onclick="closeMobile()">Avis clients</a>
+  <a href="#faq"         onclick="closeMobile()">FAQ</a>
+  <a href="#contact"     onclick="closeMobile()" style="color:var(--orange)">Devis gratuit ✦</a>
+</div>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero" id="accueil">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-shape hero-shape-1"></div>
+  <div class="hero-shape hero-shape-2"></div>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Plomberie professionnelle au Burkina Faso
+      </div>
+
+      <h1>Votre expert en<br><span>plomberie</span> au<br>Burkina Faso</h1>
+
+      <p class="hero-sub">
+        Installation, dépannage et réparation de plomberie pour maisons, bureaux et commerces. Intervention rapide, devis gratuit, qualité garantie.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">
+          📋 Demander un devis
+        </a>
+        <a href="tel:+22670000000" class="btn-secondary">
+          📞 Nous contacter
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">500<span>+</span></div>
+          <div class="stat-label">Clients satisfaits</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">10<span>ans</span></div>
+          <div class="stat-label">D'expérience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24<span>/7</span></div>
+          <div class="stat-label">Disponibilité</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100<span>%</span></div>
+          <div class="stat-label">Garanti</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-dot"></div>
+    <span>Défiler</span>
+  </div>
+</section>
+
+<!-- ════════════ TRUST BAR ════════════ -->
+<div class="trust-bar">
+  <div class="container trust-inner">
+    <div class="trust-item">
+      <div class="icon">⚡</div>
+      Intervention rapide
+    </div>
+    <div class="trust-item">
+      <div class="icon">🆓</div>
+      Devis gratuit
+    </div>
+    <div class="trust-item">
+      <div class="icon">🛡️</div>
+      Garantie travaux
+    </div>
+    <div class="trust-item">
+      <div class="icon">🔧</div>
+      Artisans certifiés
+    </div>
+    <div class="trust-item">
+      <div class="icon">📍</div>
+      Tout Burkina Faso
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ SERVICES ════════════ -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-head reveal">
+      <span class="section-tag">Nos prestations</span>
+      <h2 class="section-title">Tous vos besoins en <span>plomberie</span></h2>
+      <p class="section-sub">
+        De la réparation d'urgence à la rénovation complète, notre équipe qualifiée intervient sur tout type de travaux de plomberie.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card reveal" style="transition-delay:0.05s">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=85&fit=crop&crop=center" alt="Réparation fuite d'eau" loading="lazy">
+          <div class="service-img-overlay"></div>
+          <div class="service-badge">💧</div>
+        </div>
+        <div class="service-body">
+          <h3>Réparation de fuites d'eau</h3>
+          <p>Détection et réparation rapide de toute fuite — robinets, tuyaux, joints — pour éviter les dégâts des eaux.</p>
+          <a href="#contact" class="service-link">Demander un devis →</a>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:0.1s">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1200&q=85&fit=crop&crop=center" alt="Débouchage canalisations" loading="lazy">
+          <div class="service-img-overlay"></div>
+          <div class="service-badge">🚿</div>
+        </div>
+        <div class="service-body">
+          <h3>Débouchage de canalisations</h3>
+          <p>Intervention professionnelle pour déboucher lavabos, baignoires, toilettes et canalisations obstruées.</p>
+          <a href="#contact" class="service-link">Demander un devis →</a>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:0.15s">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1600566753151-384129cf4e3e?w=1200&q=85&fit=crop&crop=center" alt="Installation robinets" loading="lazy">
+          <div class="service-img-overlay"></div>
+          <div class="service-badge">🔩</div>
+        </div>
+        <div class="service-body">
+          <h3>Installation de robinets</h3>
+          <p>Pose et remplacement de robinets modernes — cuisine, salle de bain, vannes d'arrêt — avec finitions soignées.</p>
+          <a href="#contact" class="service-link">Demander un devis →</a>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:0.2s">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85&fit=crop&crop=center" alt="Chauffe-eau installation" loading="lazy">
+          <div class="service-img-overlay"></div>
+          <div class="service-badge">🌡️</div>
+        </div>
+        <div class="service-body">
+          <h3>Installation de chauffe-eau</h3>
+          <p>Fourniture et installation de chauffe-eau électriques, solaires ou à gaz. Entretien et dépannage inclus.</p>
+          <a href="#contact" class="service-link">Demander un devis →</a>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:0.25s">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?w=1200&q=85&fit=crop&crop=center" alt="Rénovation salle de bain" loading="lazy">
+          <div class="service-img-overlay"></div>
+          <div class="service-badge">🏠</div>
+        </div>
+        <div class="service-body">
+          <h3>Rénovation de salle de bain</h3>
+          <p>Transformation complète de votre salle de bain : carrelage, douche, baignoire, meuble vasque et robinetterie.</p>
+          <a href="#contact" class="service-link">Demander un devis →</a>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:0.3s">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&q=85&fit=crop&crop=center" alt="Installation toilettes" loading="lazy">
+          <div class="service-img-overlay"></div>
+          <div class="service-badge">🚽</div>
+        </div>
+        <div class="service-body">
+          <h3>Installation de toilettes</h3>
+          <p>Pose de WC, réservoirs, abattants et lave-mains. Remplacement et mise aux normes de vos sanitaires.</p>
+          <a href="#contact" class="service-link">Demander un devis →</a>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:0.35s">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200&q=85&fit=crop&crop=center" alt="Maintenance plomberie" loading="lazy">
+          <div class="service-img-overlay"></div>
+          <div class="service-badge">🛠️</div>
+        </div>
+        <div class="service-body">
+          <h3>Maintenance de plomberie</h3>
+          <p>Contrats d'entretien préventif pour particuliers et entreprises. Inspections régulières pour éviter les pannes.</p>
+          <a href="#contact" class="service-link">Demander un devis →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ WHY US ════════════ -->
+<section class="why" id="pourquoi">
+  <div class="container">
+    <div class="why-inner">
+
+      <div class="why-img-wrap reveal-left">
+        <div class="why-img-main">
+          <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1200&q=85&fit=crop&crop=center" alt="Plombier professionnel au travail" loading="lazy">
+        </div>
+        <div class="why-img-badge">
+          <div class="why-badge-icon">🏆</div>
+          <div class="why-badge-text">
+            <strong>500+</strong>
+            <span>Clients satisfaits depuis 2014</span>
+          </div>
+        </div>
+        <div class="why-img-tag">✅ Certifié &amp; Agréé</div>
+      </div>
+
+      <div class="reveal-right">
+        <span class="section-tag">Nos engagements</span>
+        <h2 class="section-title">Pourquoi choisir<br><span>AquaPro</span> ?</h2>
+        <p class="section-sub">
+          Depuis plus de 10 ans, nous accompagnons les habitants et entreprises du Burkina Faso avec un service de plomberie fiable, rapide et à prix juste.
+        </p>
+
+        <div class="why-items">
+          <div class="why-item">
+            <div class="why-icon">⚡</div>
+            <div class="why-item-title">Intervention rapide</div>
+            <div class="why-item-text">Nous intervenons dans les 2h pour toute urgence de plomberie à Ouagadougou.</div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">🆓</div>
+            <div class="why-item-title">Devis 100% gratuit</div>
+            <div class="why-item-text">Estimation transparente et sans engagement. Vous décidez en toute connaissance.</div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">✨</div>
+            <div class="why-item-title">Travail soigné</div>
+            <div class="why-item-text">Nos artisans qualifiés respectent les normes et laissent le chantier impeccable.</div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">🛡️</div>
+            <div class="why-item-title">Garantie travaux</div>
+            <div class="why-item-text">Tous nos travaux sont garantis. En cas de problème, nous revenons sans frais.</div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">📍</div>
+            <div class="why-item-title">Local &amp; disponible</div>
+            <div class="why-item-text">Équipe basée au Burkina, disponible 7j/7 pour vos urgences comme vos projets.</div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">💳</div>
+            <div class="why-item-title">Paiement flexible</div>
+            <div class="why-item-text">Paiement en espèces, Mobile Money ou virement. Facilités disponibles.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GALLERY ════════════ -->
+<section class="gallery" id="galerie">
+  <div class="container">
+    <div class="gallery-head reveal">
+      <span class="section-tag">Nos réalisations</span>
+      <h2 class="section-title">Nos travaux en <span>images</span></h2>
+      <p class="section-sub">Découvrez quelques-unes de nos installations et rénovations réalisées chez nos clients au Burkina Faso.</p>
+    </div>
+
+    <div class="gallery-grid reveal">
+      <div class="gallery-item g1" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=85&fit=crop&crop=center" alt="Plombier réparant des tuyaux" loading="lazy">
+        <div class="caption">Réparation sous évier</div>
+      </div>
+      <div class="gallery-item g2" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1200&q=85&fit=crop&crop=center" alt="Installation de robinetterie" loading="lazy">
+        <div class="caption">Installation robinetterie</div>
+      </div>
+      <div class="gallery-item g3" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1600566753151-384129cf4e3e?w=1200&q=85&fit=crop&crop=center" alt="Tuyauterie cuivre professionnelle" loading="lazy">
+        <div class="caption">Tuyauterie cuivre</div>
+      </div>
+      <div class="gallery-item g4" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85&fit=crop&crop=center" alt="Salle de bain moderne rénovée" loading="lazy">
+        <div class="caption">Salle de bain rénovée</div>
+      </div>
+      <div class="gallery-item g5" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?w=1200&q=85&fit=crop&crop=center" alt="Plombier avec clé à molette" loading="lazy">
+        <div class="caption">Intervention plombier</div>
+      </div>
+      <div class="gallery-item g6" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&q=85&fit=crop&crop=center" alt="Installation tuyauterie PVC" loading="lazy">
+        <div class="caption">Pose tuyauterie PVC</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="Photo agrandie">
+</div>
+
+<!-- ════════════ TESTIMONIALS ════════════ -->
+<section class="testimonials" id="temoignages">
+  <div class="container">
+    <div class="testimonials-head reveal">
+      <span class="section-tag">Témoignages</span>
+      <h2 class="section-title">Ce que disent nos <span style="color:var(--orange)">clients</span></h2>
+    </div>
+
+    <div class="testi-grid">
+
+      <div class="testi-card reveal" style="transition-delay:0.05s">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "AquaPro est venu réparer une fuite majeure chez moi en moins d'une heure. Travail impeccable, propre et professionnel. Je recommande sans hésiter à toute personne à Ouagadougou !"
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200&q=85&fit=crop&crop=center" alt="Fatou K." loading="lazy">
+          </div>
+          <div>
+            <div class="testi-name">Fatou Kaboré</div>
+            <div class="testi-role">Propriétaire, Ouagadougou</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal" style="transition-delay:0.1s">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Nous avons fait appel à AquaPro pour la rénovation complète de nos salles de bain. Le résultat est magnifique. Délais respectés, prix honnêtes et équipe très sérieuse."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1200&q=85&fit=crop&crop=center" alt="Moussa T." loading="lazy">
+          </div>
+          <div>
+            <div class="testi-name">Moussa Traoré</div>
+            <div class="testi-role">Gérant d'hôtel, Bobo-Dioulasso</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal" style="transition-delay:0.15s">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Excellente équipe, disponible même le week-end pour une urgence. Le technicien a été rapide, efficace et très poli. Vraiment un service 5 étoiles au Burkina Faso !"
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=85&fit=crop&crop=center" alt="Ibrahim S." loading="lazy">
+          </div>
+          <div>
+            <div class="testi-name">Ibrahim Sawadogo</div>
+            <div class="testi-role">Directeur d'école, Koudougou</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal" style="transition-delay:0.2s">
+        <div class="testi-stars">★★★★☆</div>
+        <p class="testi-text">
+          "Devis gratuit reçu le jour même, intervention dans les 48h. Le plombier a bien expliqué le problème avant d'intervenir. Je referai appel à AquaPro pour mon prochain projet."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1200&q=85&fit=crop&crop=center" alt="Aïcha O." loading="lazy">
+          </div>
+          <div>
+            <div class="testi-name">Aïcha Ouédraogo</div>
+            <div class="testi-role">Architecte, Ouagadougou</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal" style="transition-delay:0.25s">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Installation complète de notre réseau de plomberie pour un immeuble neuf. Travail de haute qualité, respect des normes et communication fluide tout au long du chantier."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <img src="https://images.unsplash.com/photo-1600566753151-384129cf4e3e?w=1200&q=85&fit=crop&crop=center" alt="Paul Z." loading="lazy">
+          </div>
+          <div>
+            <div class="testi-name">Paul Zongo</div>
+            <div class="testi-role">Promoteur immobilier, Ouaga</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal" style="transition-delay:0.3s">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Mon chauffe-eau était en panne depuis des jours. AquaPro l'a remplacé en une demi-journée. Prix raisonnable et garantie sur les pièces. Très satisfaite du service !"
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85&fit=crop&crop=center" alt="Marie B." loading="lazy">
+          </div>
+          <div>
+            <div class="testi-name">Marie Bassolé</div>
+            <div class="testi-role">Infirmière, Ouagadougou</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FAQ ════════════ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-inner">
+
+      <div class="reveal-left">
+        <span class="section-tag">Questions fréquentes</span>
+        <h2 class="section-title">Vos questions,<br><span>nos réponses</span></h2>
+        <p class="section-sub">
+          Vous avez une question sur nos services, nos tarifs ou nos délais d'intervention ? Trouvez la réponse ici.
+        </p>
+        <div class="faq-cta">
+          <a href="https://wa.me/22670000000" class="btn-primary" style="background:var(--blue);">
+            💬 Poser une question
+          </a>
+        </div>
+      </div>
+
+      <div class="faq-list reveal-right">
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Quels sont vos tarifs d'intervention ?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-a">
+            Nos tarifs varient selon la nature des travaux. Le devis est toujours gratuit et établi sur place avant toute intervention. Pour une urgence, un forfait déplacement s'applique à partir de 5 000 FCFA. Nous pratiquons des prix transparents et compétitifs.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Intervenez-vous en urgence le week-end et les jours fériés ?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-a">
+            Oui, nous sommes disponibles 7 jours sur 7, y compris les week-ends et jours fériés. Pour les urgences (fuites importantes, canalisation bouchée, etc.), nous nous engageons à intervenir dans les 2 heures à Ouagadougou et environ selon votre localisation.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Quelle est la durée de garantie sur vos travaux ?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-a">
+            Tous nos travaux sont garantis 12 mois minimum. Les pièces fournies par AquaPro sont couvertes par la garantie fabricant (généralement 1 à 3 ans). En cas de problème dans la période de garantie, nous revenons sans frais supplémentaires.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Intervenez-vous dans toutes les villes du Burkina Faso ?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-a">
+            Nous sommes basés à Ouagadougou mais intervenons dans toutes les grandes villes du Burkina Faso : Bobo-Dioulasso, Koudougou, Banfora, Ouahigouya et leurs environs. Des frais de déplacement peuvent s'appliquer selon la distance.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Puis-je payer par Mobile Money ?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-a">
+            Oui, nous acceptons tous les modes de paiement courants au Burkina Faso : espèces, Orange Money, Moov Money, ainsi que les virements bancaires pour les gros travaux. Nous pouvons également proposer un paiement en plusieurs fois pour les chantiers importants.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Proposez-vous des contrats de maintenance ?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-a">
+            Absolument ! Nous proposons des contrats d'entretien annuels pour particuliers et entreprises. Ces contrats incluent des visites préventives régulières, une priorité d'intervention en cas d'urgence, et des tarifs préférentiels sur toutes les prestations.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CONTACT ════════════ -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-head reveal">
+      <span class="section-tag">Contactez-nous</span>
+      <h2 class="section-title">Demandez votre<br><span>devis gratuit</span></h2>
+      <p class="section-sub">
+        Remplissez le formulaire ci-dessous ou contactez-nous directement. Réponse garantie sous 24h.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+
+      <!-- Form -->
+      <div class="contact-form-wrap reveal-left">
+        <h3 class="form-title">📋 Votre message</h3>
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nom">Nom complet *</label>
+              <input type="text" id="nom" name="nom" placeholder="Jean Dupont" required>
+              <div class="form-error-msg" id="nomError">Veuillez entrer votre nom.</div>
+            </div>
+            <div class="form-group">
+              <label for="tel">Téléphone *</label>
+              <input type="tel" id="tel" name="tel" placeholder="+226 70 00 00 00" required>
+              <div class="form-error-msg" id="telError">Numéro de téléphone requis.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Adresse email</label>
+            <input type="email" id="email" name="email" placeholder="jean@exemple.com">
+            <div class="form-error-msg" id="emailError">Adresse email invalide.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="service">Service souhaité</label>
+            <select id="service" name="service">
+              <option value="">Choisissez un service...</option>
+              <option>Réparation de fuite d'eau</option>
+              <option>Débouchage de canalisations</option>
+              <option>Installation de robinets</option>
+              <option>Installation de chauffe-eau</option>
+              <option>Rénovation de salle de bain</option>
+              <option>Installation de toilettes</option>
+              <option>Maintenance de plomberie</option>
+              <option>Autre / Urgence</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Décrivez votre problème *</label>
+            <textarea id="message" name="message" placeholder="Décrivez votre situation ou votre projet..." required></textarea>
+            <div class="form-error-msg" id="messageError">Veuillez décrire votre demande.</div>
+          </div>
+
+          <button type="submit" class="form-submit">
+            📤 Envoyer ma demande
+          </button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="check">✅</div>
+          <p>Message envoyé avec succès !<br>Nous vous répondrons dans les plus brefs délais.</p>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="contact-info-wrap reveal-right">
+
+        <div class="contact-info-card">
+          <div class="ci-icon">📞</div>
+          <div class="ci-text">
+            <strong>Téléphone</strong>
+            <span><a href="tel:+22670000000">+226 70 00 00 00</a><br><a href="tel:+22675000000">+226 75 00 00 00</a></span>
+          </div>
+        </div>
+
+        <div class="contact-info-card">
+          <div class="ci-icon">📧</div>
+          <div class="ci-text">
+            <strong>Email</strong>
+            <span><a href="mailto:contact@aquapro-burkina.com">contact@aquapro-burkina.com</a></span>
+          </div>
+        </div>
+
+        <div class="contact-info-card">
+          <div class="ci-icon">📍</div>
+          <div class="ci-text">
+            <strong>Adresse</strong>
+            <span>Secteur 15, Avenue de la Liberté<br>Ouagadougou, Burkina Faso</span>
+          </div>
+        </div>
+
+        <div class="contact-info-card">
+          <div class="ci-icon">🕐</div>
+          <div class="ci-text">
+            <strong>Horaires d'ouverture</strong>
+            <span>Lundi – Samedi : 07h00 – 20h00<br>Urgences : 24h/24, 7j/7</span>
+          </div>
+        </div>
+
+        <div class="contact-action-btns">
+          <a href="https://wa.me/22670000000?text=Bonjour%20AquaPro,%20je%20souhaite%20un%20devis." class="btn-whatsapp" target="_blank">
+            💬 WhatsApp
+          </a>
+          <a href="tel:+22670000000" class="btn-call">
+            📞 Appeler maintenant
+          </a>
+        </div>
+
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d249020.2609960717!2d-1.6727059375!3d12.3538957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xe2ebbfbe45e3dff%3A0x3aa0dc2b5e09eef!2sOuagadougou%2C%20Burkina%20Faso!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr"
+            allowfullscreen="" loading="lazy"
+            title="AquaPro Burkina - Localisation Ouagadougou">
+          </iframe>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">🔧</div>
+          <span class="logo-text">AquaPro</span>
+        </div>
+        <p class="footer-desc">
+          Votre expert en plomberie au Burkina Faso depuis 2014. Intervention rapide, travail soigné, devis gratuit. Nous sommes là pour tous vos besoins en plomberie.
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" aria-label="Facebook">📘</a>
+          <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+          <a href="#" class="social-btn" aria-label="WhatsApp">💬</a>
+          <a href="#" class="social-btn" aria-label="YouTube">▶️</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#services">Nos services</a></li>
+          <li><a href="#pourquoi">Pourquoi nous</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#temoignages">Témoignages</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="#services">Réparation fuites</a></li>
+          <li><a href="#services">Débouchage</a></li>
+          <li><a href="#services">Robinetterie</a></li>
+          <li><a href="#services">Chauffe-eau</a></li>
+          <li><a href="#services">Salle de bain</a></li>
+          <li><a href="#services">Toilettes</a></li>
+          <li><a href="#services">Maintenance</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-item">
+          <span class="ico">📞</span>
+          <span>+226 70 00 00 00<br>+226 75 00 00 00</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="ico">📧</span>
+          <span>contact@aquapro-burkina.com</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="ico">📍</span>
+          <span>Secteur 15, Ouagadougou<br>Burkina Faso</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="ico">🕐</span>
+          <span>Lun–Sam : 07h–20h<br>Urgences : 24h/24</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 AquaPro Burkina Faso. Tous droits réservés.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+        <a href="#">Conditions générales</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════ FLOATING BUTTONS ════════════ -->
+<a href="https://wa.me/22670000000?text=Bonjour%20AquaPro,%20je%20souhaite%20un%20devis." class="float-whatsapp" target="_blank" aria-label="WhatsApp">💬</a>
+
+<button class="float-top" id="backTop" onclick="scrollToTop()" aria-label="Retour en haut">↑</button>
+
+<!-- ════════════ JAVASCRIPT ════════════ -->
+<script>
+  /* ─── Navbar scroll ─── */
+  const navbar = document.getElementById('navbar');
+  const backTop = document.getElementById('backTop');
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    navbar.classList.toggle('scrolled', y > 60);
+    backTop.classList.toggle('visible', y > 400);
+
+    // Active nav link
+    document.querySelectorAll('section[id]').forEach(sec => {
+      const top = sec.offsetTop - 100;
+      const bottom = top + sec.offsetHeight;
+      const link = document.querySelector(`.nav-links a[href="#${sec.id}"]`);
+      if (link) link.classList.toggle('active', y >= top && y < bottom);
+    });
+  });
+
+  /* ─── Back to top ─── */
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* ─── Mobile menu ─── */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+
+  document.getElementById('mobileClose').addEventListener('click', closeMobile);
+
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ─── Scroll reveal ─── */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, (entry.target.dataset.delay || 0));
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  /* ─── FAQ accordion ─── */
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  /* ─── Lightbox ─── */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+
+  function openLightbox(el) {
+    const src = el.querySelector('img').src;
+    lightboxImg.src = src;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  /* ─── Form validation ─── */
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let valid = true;
+
+    const nom = document.getElementById('nom');
+    const tel = document.getElementById('tel');
+    const email = document.getElementById('email');
+    const message = document.getElementById('message');
+
+    // Reset errors
+    [nom, tel, email, message].forEach(f => {
+      f.classList.remove('error');
+    });
+    document.querySelectorAll('.form-error-msg').forEach(m => m.style.display = 'none');
+
+    // Validate
+    if (!nom.value.trim()) {
+      nom.classList.add('error');
+      document.getElementById('nomError').style.display = 'block';
+      valid = false;
+    }
+
+    if (!tel.value.trim() || tel.value.trim().length < 8) {
+      tel.classList.add('error');
+      document.getElementById('telError').style.display = 'block';
+      valid = false;
+    }
+
+    if (email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+      email.classList.add('error');
+      document.getElementById('emailError').style.display = 'block';
+      valid = false;
+    }
+
+    if (!message.value.trim()) {
+      message.classList.add('error');
+      document.getElementById('messageError').style.display = 'block';
+      valid = false;
+    }
+
+    if (valid) {
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+      document.querySelector('.form-title').textContent = '';
+    }
+  });
+
+  /* ─── Staggered card animations ─── */
+  document.querySelectorAll('.service-card, .testi-card').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.06) + 's';
+  });
+
+  /* ─── Smooth hover on why-items ─── */
+  document.querySelectorAll('.why-item').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      item.querySelectorAll('.why-icon, .why-item-title, .why-item-text').forEach(el => {
+        el.style.transition = 'color 0.3s, background 0.3s';
+      });
+    });
+  });
+</script>
+</body>
+</html>

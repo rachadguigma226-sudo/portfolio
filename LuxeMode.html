@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUXE MODE — Boutique en ligne</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --noir: #0a0a0a;
+    --blanc: #fafaf8;
+    --creme: #f0ece3;
+    --accent: #c8a96e;
+    --accent2: #8b6914;
+    --gris: #6b6b6b;
+    --gris-clair: #e8e4dc;
+    --rouge: #c0392b;
+    --shadow: 0 4px 30px rgba(0,0,0,0.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--blanc);color:var(--noir);overflow-x:hidden;}
+
+  /* HEADER */
+  header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,250,248,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--gris-clair);transition:all .3s;}
+  header.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08);}
+  .header-inner{max-width:1400px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:72px;}
+  .logo{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;letter-spacing:.05em;color:var(--noir);text-decoration:none;}
+  .logo span{color:var(--accent);}
+  nav{display:flex;gap:2.5rem;align-items:center;}
+  nav a{text-decoration:none;color:var(--gris);font-size:.875rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;transition:color .2s;position:relative;}
+  nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s;}
+  nav a:hover{color:var(--noir);}
+  nav a:hover::after{width:100%;}
+  .header-actions{display:flex;gap:1rem;align-items:center;}
+  .btn-panier{background:var(--noir);color:var(--blanc);border:none;padding:.6rem 1.2rem;border-radius:2px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.875rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem;transition:background .2s;position:relative;}
+  .btn-panier:hover{background:var(--accent2);}
+  .panier-count{background:var(--accent);color:var(--noir);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:.5rem;}
+  .menu-toggle span{display:block;width:24px;height:2px;background:var(--noir);margin:5px 0;transition:all .3s;}
+
+  /* HERO */
+  .hero{height:100vh;min-height:700px;position:relative;display:flex;align-items:center;overflow:hidden;margin-top:72px;}
+  .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg, #1a1a1a 0%, #2d2014 50%, #1a1a1a 100%);}
+  .hero-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;opacity:.45;mix-blend-mode:luminosity;}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(to right, rgba(10,10,10,0.8) 0%, rgba(10,10,10,0.3) 60%, transparent 100%);}
+  .hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 2rem;width:100%;}
+  .hero-tag{display:inline-block;background:var(--accent);color:var(--noir);font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.4rem 1rem;margin-bottom:1.5rem;animation:fadeUp .8s .2s both;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,6.5rem);font-weight:900;color:var(--blanc);line-height:1.0;margin-bottom:1.5rem;animation:fadeUp .8s .4s both;}
+  .hero h1 em{color:var(--accent);font-style:italic;}
+  .hero p{font-size:1.1rem;color:rgba(255,255,255,0.7);max-width:480px;line-height:1.7;margin-bottom:2.5rem;animation:fadeUp .8s .6s both;}
+  .hero-btns{display:flex;gap:1rem;animation:fadeUp .8s .8s both;flex-wrap:wrap;}
+  .btn-primary{background:var(--accent);color:var(--noir);border:none;padding:1rem 2rem;font-family:'DM Sans',sans-serif;font-size:.875rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-block;}
+  .btn-primary:hover{background:var(--accent2);color:var(--blanc);transform:translateY(-2px);box-shadow:0 8px 25px rgba(200,169,110,0.4);}
+  .btn-secondary{background:transparent;color:var(--blanc);border:1px solid rgba(255,255,255,0.4);padding:1rem 2rem;font-family:'DM Sans',sans-serif;font-size:.875rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-block;}
+  .btn-secondary:hover{border-color:var(--blanc);background:rgba(255,255,255,.05);}
+  .hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:fadeIn 1s 1.2s both;}
+  .hero-scroll span{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+  .scroll-line{width:1px;height:40px;background:linear-gradient(to bottom, rgba(200,169,110,0.8), transparent);animation:scrollAnim 2s infinite;}
+
+  /* STATS */
+  .stats{background:var(--noir);padding:3rem 2rem;}
+  .stats-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;}
+  .stat-item{padding:1.5rem;}
+  .stat-num{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:var(--accent);display:block;}
+  .stat-label{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:.5rem;}
+
+  /* CATEGORIES STRIP */
+  .categories-strip{padding:4rem 2rem;background:var(--creme);}
+  .section-header{max-width:1400px;margin:0 auto 2.5rem;display:flex;align-items:flex-end;justify-content:space-between;}
+  .section-title{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;}
+  .section-subtitle{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gris);font-weight:500;}
+  .cat-grid{max-width:1400px;margin:0 auto;display:flex;gap:1rem;overflow-x:auto;padding-bottom:.5rem;}
+  .cat-grid::-webkit-scrollbar{height:4px;}
+  .cat-grid::-webkit-scrollbar-track{background:var(--gris-clair);}
+  .cat-grid::-webkit-scrollbar-thumb{background:var(--accent);}
+  .cat-btn{flex-shrink:0;padding:.7rem 1.8rem;border:1.5px solid var(--gris-clair);background:var(--blanc);color:var(--gris);font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .25s;border-radius:2px;}
+  .cat-btn:hover,.cat-btn.active{background:var(--noir);color:var(--blanc);border-color:var(--noir);}
+  .cat-btn.active{position:relative;}
+
+  /* PRODUITS */
+  #produits{padding:5rem 2rem;background:var(--blanc);}
+  .produits-inner{max-width:1400px;margin:0 auto;}
+  .produits-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2rem;margin-top:3rem;}
+  .produit-card{background:var(--blanc);border:1px solid var(--gris-clair);position:relative;cursor:pointer;transition:transform .3s,box-shadow .3s;overflow:hidden;}
+  .produit-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,0.12);}
+  .produit-img-wrap{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--creme);}
+  .produit-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+  .produit-card:hover .produit-img-wrap img{transform:scale(1.06);}
+  .produit-badge{position:absolute;top:1rem;left:1rem;background:var(--rouge);color:var(--blanc);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .8rem;z-index:2;}
+  .produit-badge.nouveau{background:var(--noir);}
+  .produit-actions{position:absolute;bottom:-60px;left:0;right:0;background:var(--noir);display:flex;transition:bottom .3s;}
+  .produit-card:hover .produit-actions{bottom:0;}
+  .btn-add{flex:1;background:none;border:none;color:var(--blanc);padding:1rem;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s;}
+  .btn-add:hover{background:var(--accent2);}
+  .btn-wish{background:none;border:none;border-left:1px solid rgba(255,255,255,.15);color:var(--blanc);padding:1rem 1.2rem;cursor:pointer;font-size:1.1rem;transition:color .2s;}
+  .btn-wish:hover{color:var(--accent);}
+  .produit-info{padding:1.2rem 1.2rem 1.5rem;}
+  .produit-cat{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:.4rem;}
+  .produit-nom{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:.5rem;color:var(--noir);}
+  .produit-prix-row{display:flex;align-items:center;gap:.8rem;}
+  .produit-prix{font-size:1.1rem;font-weight:700;color:var(--noir);}
+  .produit-prix-old{font-size:.9rem;color:var(--gris);text-decoration:line-through;}
+  .produit-stars{font-size:.75rem;color:var(--accent);margin-top:.4rem;letter-spacing:2px;}
+
+  /* NO RESULTS */
+  .no-results{grid-column:1/-1;text-align:center;padding:5rem;color:var(--gris);}
+  .no-results p{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:.5rem;}
+
+  /* PANIER MODAL */
+  .panier-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2000;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px);}
+  .panier-overlay.open{opacity:1;pointer-events:all;}
+  .panier-drawer{position:fixed;top:0;right:-500px;width:min(480px,100vw);height:100vh;background:var(--blanc);z-index:2001;transition:right .4s cubic-bezier(.25,.8,.25,1);display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.2);}
+  .panier-overlay.open .panier-drawer{right:0;}
+  .panier-header{padding:2rem;border-bottom:1px solid var(--gris-clair);display:flex;align-items:center;justify-content:space-between;}
+  .panier-header h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;}
+  .panier-close{background:none;border:1px solid var(--gris-clair);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;transition:all .2s;border-radius:2px;}
+  .panier-close:hover{background:var(--noir);color:var(--blanc);border-color:var(--noir);}
+  .panier-items{flex:1;overflow-y:auto;padding:1.5rem 2rem;}
+  .panier-item{display:flex;gap:1rem;padding:1.2rem 0;border-bottom:1px solid var(--gris-clair);align-items:flex-start;}
+  .panier-item-img{width:80px;height:100px;object-fit:cover;flex-shrink:0;background:var(--creme);}
+  .panier-item-info{flex:1;}
+  .panier-item-nom{font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem;margin-bottom:.3rem;}
+  .panier-item-cat{font-size:.75rem;color:var(--gris);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem;}
+  .panier-item-prix{font-weight:700;color:var(--accent2);}
+  .panier-item-qty{display:flex;align-items:center;gap:.5rem;margin-top:.8rem;}
+  .qty-btn{background:var(--gris-clair);border:none;width:28px;height:28px;cursor:pointer;font-size:1rem;font-weight:700;transition:background .2s;display:flex;align-items:center;justify-content:center;}
+  .qty-btn:hover{background:var(--noir);color:var(--blanc);}
+  .qty-val{font-weight:700;min-width:20px;text-align:center;}
+  .panier-remove{background:none;border:none;color:var(--gris);cursor:pointer;font-size:1.2rem;margin-left:.5rem;transition:color .2s;}
+  .panier-remove:hover{color:var(--rouge);}
+  .panier-empty{text-align:center;padding:4rem 2rem;color:var(--gris);}
+  .panier-empty .empty-icon{font-size:3rem;margin-bottom:1rem;}
+  .panier-empty p{font-family:'Playfair Display',serif;font-size:1.2rem;}
+  .panier-footer{padding:2rem;border-top:1px solid var(--gris-clair);}
+  .panier-subtotal{display:flex;justify-content:space-between;margin-bottom:.8rem;font-size:.9rem;color:var(--gris);}
+  .panier-total{display:flex;justify-content:space-between;font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:1.5rem;padding-top:.8rem;border-top:1px solid var(--gris-clair);}
+  .btn-checkout{width:100%;background:var(--noir);color:var(--blanc);border:none;padding:1.2rem;font-family:'DM Sans',sans-serif;font-size:.875rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s;}
+  .btn-checkout:hover{background:var(--accent2);}
+  .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--noir);color:var(--blanc);padding:.8rem 1.8rem;font-size:.85rem;font-weight:600;letter-spacing:.05em;z-index:3000;opacity:0;transition:all .4s;border-left:3px solid var(--accent);pointer-events:none;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* CONTACT */
+  #contact{padding:6rem 2rem;background:var(--creme);}
+  .contact-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+  .contact-info h2{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;line-height:1.2;margin-bottom:1.5rem;}
+  .contact-info p{color:var(--gris);line-height:1.8;margin-bottom:2rem;}
+  .contact-btns{display:flex;flex-direction:column;gap:1rem;}
+  .btn-wa{display:flex;align-items:center;gap:1rem;background:#25D366;color:var(--blanc);border:none;padding:1rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.95rem;text-decoration:none;transition:all .3s;width:fit-content;}
+  .btn-wa:hover{background:#128C7E;transform:translateY(-2px);box-shadow:0 8px 25px rgba(37,211,102,.35);}
+  .btn-wa .wa-icon{font-size:1.4rem;}
+  .contact-form{background:var(--blanc);padding:2.5rem;box-shadow:var(--shadow);}
+  .form-group{margin-bottom:1.5rem;}
+  .form-group label{display:block;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--gris);margin-bottom:.6rem;}
+  .form-group input,.form-group textarea,.form-group select{width:100%;border:1.5px solid var(--gris-clair);padding:.9rem 1rem;font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--noir);background:var(--blanc);transition:border-color .2s;outline:none;appearance:none;}
+  .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent);}
+  .form-group textarea{height:120px;resize:vertical;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .btn-submit{width:100%;background:var(--noir);color:var(--blanc);border:none;padding:1.1rem;font-family:'DM Sans',sans-serif;font-size:.875rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s;margin-top:.5rem;}
+  .btn-submit:hover{background:var(--accent2);}
+
+  /* FOOTER */
+  footer{background:var(--noir);color:rgba(255,255,255,.6);padding:4rem 2rem 2rem;}
+  .footer-inner{max-width:1400px;margin:0 auto;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+  .footer-brand .logo{color:var(--blanc);display:block;margin-bottom:1rem;}
+  .footer-brand p{font-size:.875rem;line-height:1.8;max-width:280px;}
+  .footer-col h4{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--blanc);font-weight:700;margin-bottom:1.2rem;}
+  .footer-col a{display:block;font-size:.875rem;color:rgba(255,255,255,.5);text-decoration:none;margin-bottom:.6rem;transition:color .2s;}
+  .footer-col a:hover{color:var(--accent);}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:.8rem;flex-wrap:wrap;gap:1rem;}
+  .social-links{display:flex;gap:1rem;}
+  .social-link{width:36px;height:36px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);text-decoration:none;transition:all .2s;font-size:.85rem;}
+  .social-link:hover{background:var(--accent);border-color:var(--accent);color:var(--noir);}
+
+  /* ANIMATIONS */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  @keyframes scrollAnim{0%,100%{opacity:1;}50%{opacity:0;transform:translateY(10px);}}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s;}
+  .reveal.visible{opacity:1;transform:none;}
+
+  /* MOBILE */
+  @media(max-width:768px){
+    nav{display:none;position:fixed;top:72px;left:0;right:0;background:var(--blanc);flex-direction:column;padding:2rem;gap:1.5rem;border-bottom:1px solid var(--gris-clair);}
+    nav.open{display:flex;}
+    .menu-toggle{display:block;}
+    .hero h1{font-size:3rem;}
+    .stats-inner{grid-template-columns:repeat(2,1fr);}
+    .contact-inner{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .produits-grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr));}
+    .section-header{flex-direction:column;align-items:flex-start;gap:.5rem;}
+  }
+  @media(max-width:480px){
+    .stats-inner{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr;}
+    .hero-btns{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="header-inner">
+    <a href="#" class="logo">LUXE<span>MODE</span></a>
+    <nav id="nav">
+      <a href="#">Accueil</a>
+      <a href="#produits">Produits</a>
+      <a href="#categories">Catégories</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn-panier" onclick="togglePanier()">
+        🛍 Panier
+        <span class="panier-count" id="panierCount">0</span>
+      </button>
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <img class="hero-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80" alt="Mode" loading="eager">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Nouvelle Collection 2025</span>
+    <h1>L'Élégance<br><em>Redéfinie</em></h1>
+    <p>Découvrez notre sélection exclusive de vêtements haut de gamme, où style contemporain et raffinement intemporel se rencontrent.</p>
+    <div class="hero-btns">
+      <a href="#produits" class="btn-primary">Explorer la Collection</a>
+      <a href="#categories" class="btn-secondary">Voir les Catégories</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Défiler</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats reveal">
+  <div class="stats-inner">
+    <div class="stat-item"><span class="stat-num">2 400+</span><span class="stat-label">Produits disponibles</span></div>
+    <div class="stat-item"><span class="stat-num">98%</span><span class="stat-label">Clients satisfaits</span></div>
+    <div class="stat-item"><span class="stat-num">48h</span><span class="stat-label">Livraison express</span></div>
+    <div class="stat-item"><span class="stat-num">7</span><span class="stat-label">Catégories exclusives</span></div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories-strip reveal" id="categories">
+  <div class="section-header">
+    <div>
+      <p class="section-subtitle">Explorer par</p>
+      <h2 class="section-title">Catégories</h2>
+    </div>
+  </div>
+  <div class="cat-grid">
+    <button class="cat-btn active" data-cat="tous" onclick="filtrer('tous',this)">Tous les articles</button>
+    <button class="cat-btn" data-cat="pulls" onclick="filtrer('pulls',this)">👕 Pulls</button>
+    <button class="cat-btn" data-cat="tshirts" onclick="filtrer('tshirts',this)">👔 T-shirts</button>
+    <button class="cat-btn" data-cat="pantalons" onclick="filtrer('pantalons',this)">👖 Pantalons</button>
+    <button class="cat-btn" data-cat="chemises" onclick="filtrer('chemises',this)">🧥 Chemises</button>
+    <button class="cat-btn" data-cat="maillots" onclick="filtrer('maillots',this)">🏊 Maillots</button>
+    <button class="cat-btn" data-cat="costumes" onclick="filtrer('costumes',this)">🤵 Costumes</button>
+    <button class="cat-btn" data-cat="vestes" onclick="filtrer('vestes',this)">🧣 Vestes</button>
+  </div>
+</section>
+
+<!-- PRODUITS -->
+<section id="produits">
+  <div class="produits-inner">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-subtitle">Notre Sélection</p>
+        <h2 class="section-title">Produits Phares</h2>
+      </div>
+      <p id="nbProduits" style="color:var(--gris);font-size:.875rem;"></p>
+    </div>
+    <div class="produits-grid" id="produitsGrid"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner reveal">
+    <div class="contact-info">
+      <h2>Besoin d'aide ou d'un conseil mode ?</h2>
+      <p>Notre équipe de stylistes est disponible 7j/7 pour vous accompagner dans vos choix. Contactez-nous par WhatsApp ou via le formulaire pour une réponse rapide et personnalisée.</p>
+      <div class="contact-btns">
+        <a href="https://wa.me/22600000000" target="_blank" class="btn-wa">
+          <span class="wa-icon">💬</span>
+          Écrire sur WhatsApp
+        </a>
+        <div style="font-size:.85rem;color:var(--gris);margin-top:.5rem;">📞 +226 00 00 00 00 &nbsp;·&nbsp; 🕒 Lun–Sam, 8h–20h</div>
+      </div>
+      <div style="margin-top:2.5rem;display:flex;gap:1.5rem;">
+        <div><div style="font-weight:700;font-family:'Playfair Display',serif;">Livraison</div><div style="font-size:.85rem;color:var(--gris);">Gratuite dès 25 000 FCFA</div></div>
+        <div><div style="font-weight:700;font-family:'Playfair Display',serif;">Retours</div><div style="font-size:.85rem;color:var(--gris);">30 jours offerts</div></div>
+        <div><div style="font-weight:700;font-family:'Playfair Display',serif;">Paiement</div><div style="font-size:.85rem;color:var(--gris);">Sécurisé & mobile money</div></div>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <div style="margin-bottom:2rem;">
+        <p class="section-subtitle">Formulaire</p>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;">Envoyez un message</h3>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Prénom</label><input type="text" placeholder="Votre prénom"></div>
+        <div class="form-group"><label>Nom</label><input type="text" placeholder="Votre nom"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="exemple@email.com"></div>
+      <div class="form-group">
+        <label>Sujet</label>
+        <select>
+          <option>Question sur un produit</option>
+          <option>Suivi de commande</option>
+          <option>Retour / Échange</option>
+          <option>Autre demande</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Votre message..."></textarea></div>
+      <button class="btn-submit" onclick="submitForm()">Envoyer le message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">LUXE<span style="color:var(--accent)">MODE</span></a>
+        <p>La référence de la mode haut de gamme en Afrique de l'Ouest. Qualité, style et élégance à votre portée.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Boutique</h4>
+        <a href="#">Nouveautés</a>
+        <a href="#">Meilleures ventes</a>
+        <a href="#">Promotions</a>
+        <a href="#">Collections</a>
+      </div>
+      <div class="footer-col">
+        <h4>Service</h4>
+        <a href="#">Mon compte</a>
+        <a href="#">Suivre ma commande</a>
+        <a href="#">Retours</a>
+        <a href="#">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>À propos</h4>
+        <a href="#">Notre histoire</a>
+        <a href="#">Durabilité</a>
+        <a href="#">Presse</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 LUXEMODE — Tous droits réservés</span>
+      <div class="social-links">
+        <a href="#" class="social-link">f</a>
+        <a href="#" class="social-link">in</a>
+        <a href="#" class="social-link">ig</a>
+        <a href="#" class="social-link">tw</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- PANIER DRAWER -->
+<div class="panier-overlay" id="panierOverlay" onclick="closePanierOutside(event)">
+  <div class="panier-drawer">
+    <div class="panier-header">
+      <h2>Mon Panier</h2>
+      <button class="panier-close" onclick="togglePanier()">✕</button>
+    </div>
+    <div class="panier-items" id="panierItems"></div>
+    <div class="panier-footer" id="panierFooter"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const produits = [
+  {id:1,nom:"Pull Cachemire Doux",cat:"pulls",prix:28500,ancienPrix:35000,badge:"Promo",img:"https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&q=80",stars:5},
+  {id:2,nom:"Pull Col Roulé Premium",cat:"pulls",prix:22000,ancienPrix:null,badge:"Nouveau",img:"https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80",stars:4},
+  {id:3,nom:"T-shirt Coton Bio",cat:"tshirts",prix:8500,ancienPrix:null,badge:null,img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80",stars:5},
+  {id:4,nom:"T-shirt Graphique Urban",cat:"tshirts",prix:11000,ancienPrix:14000,badge:"Promo",img:"https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600&q=80",stars:4},
+  {id:5,nom:"Pantalon Slim Chino",cat:"pantalons",prix:24000,ancienPrix:null,badge:"Nouveau",img:"https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=600&q=80",stars:5},
+  {id:6,nom:"Jean Droit Classique",cat:"pantalons",prix:32000,ancienPrix:38000,badge:"Promo",img:"https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80",stars:4},
+  {id:7,nom:"Chemise Lin Estivale",cat:"chemises",prix:19500,ancienPrix:null,badge:null,img:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&q=80",stars:5},
+  {id:8,nom:"Chemise Oxford Rayée",cat:"chemises",prix:21000,ancienPrix:26000,badge:"Promo",img:"https://images.unsplash.com/photo-1598032895397-b9472444bf93?w=600&q=80",stars:4},
+  {id:9,nom:"Maillot de Bain Shorty",cat:"maillots",prix:14500,ancienPrix:null,badge:"Nouveau",img:"https://images.unsplash.com/photo-1544966503-7cc5ac882d5d?w=600&q=80",stars:4},
+  {id:10,nom:"Maillot Sport Performance",cat:"maillots",prix:17000,ancienPrix:20000,badge:"Promo",img:"https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600&q=80",stars:5},
+  {id:11,nom:"Costume Trois Pièces",cat:"costumes",prix:95000,ancienPrix:120000,badge:"Promo",img:"https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&q=80",stars:5},
+  {id:12,nom:"Costume Cérémonie Slim",cat:"costumes",prix:85000,ancienPrix:null,badge:"Nouveau",img:"https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&q=80",stars:5},
+  {id:13,nom:"Veste Cuir Biker",cat:"vestes",prix:68000,ancienPrix:80000,badge:"Promo",img:"https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&q=80",stars:4},
+  {id:14,nom:"Blazer Oversize Tendance",cat:"vestes",prix:45000,ancienPrix:null,badge:"Nouveau",img:"https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&q=80",stars:5},
+  {id:15,nom:"Veste Technique Légère",cat:"vestes",prix:38000,ancienPrix:44000,badge:"Promo",img:"https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=600&q=80",stars:4},
+  {id:16,nom:"Pull Oversized Cosy",cat:"pulls",prix:18500,ancienPrix:null,badge:null,img:"https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=600&q=80",stars:5},
+];
+
+let panier = [];
+let catActive = 'tous';
+
+function formatPrix(n){return n.toLocaleString('fr-FR')+" FCFA";}
+function etoiles(n){return '★'.repeat(n)+'☆'.repeat(5-n);}
+
+function renderProduits(liste){
+  const grid=document.getElementById('produitsGrid');
+  const nb=document.getElementById('nbProduits');
+  nb.textContent=liste.length+" article"+(liste.length>1?'s':'')+" trouvé"+(liste.length>1?'s':'');
+  if(!liste.length){grid.innerHTML='<div class="no-results"><p>Aucun article dans cette catégorie</p><small>Essayez une autre sélection</small></div>';return;}
+  grid.innerHTML=liste.map(p=>`
+  <div class="produit-card reveal" data-cat="${p.cat}">
+    <div class="produit-img-wrap">
+      <img src="${p.img}" alt="${p.nom}" loading="lazy">
+      ${p.badge?`<span class="produit-badge ${p.badge==='Nouveau'?'nouveau':''}">${p.badge}</span>`:''}
+      <div class="produit-actions">
+        <button class="btn-add" onclick="ajouterPanier(${p.id})">＋ Ajouter au panier</button>
+        <button class="btn-wish">♡</button>
+      </div>
+    </div>
+    <div class="produit-info">
+      <div class="produit-cat">${p.cat.charAt(0).toUpperCase()+p.cat.slice(1)}</div>
+      <div class="produit-nom">${p.nom}</div>
+      <div class="produit-prix-row">
+        <span class="produit-prix">${formatPrix(p.prix)}</span>
+        ${p.ancienPrix?`<span class="produit-prix-old">${formatPrix(p.ancienPrix)}</span>`:''}
+      </div>
+      <div class="produit-stars">${etoiles(p.stars)}</div>
+    </div>
+  </div>`).join('');
+  observeReveal();
+}
+
+function filtrer(cat,btn){
+  catActive=cat;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const liste=cat==='tous'?produits:produits.filter(p=>p.cat===cat);
+  renderProduits(liste);
+  document.getElementById('produits').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function ajouterPanier(id){
+  const p=produits.find(x=>x.id===id);
+  const exist=panier.find(x=>x.id===id);
+  if(exist){exist.qty++;}else{panier.push({...p,qty:1});}
+  updatePanierCount();
+  showToast(`"${p.nom}" ajouté au panier ✓`);
+  renderPanierItems();
+}
+
+function supprimerPanier(id){
+  panier=panier.filter(x=>x.id!==id);
+  updatePanierCount();
+  renderPanierItems();
+}
+
+function changeQty(id,delta){
+  const item=panier.find(x=>x.id===id);
+  if(!item)return;
+  item.qty+=delta;
+  if(item.qty<=0){supprimerPanier(id);return;}
+  updatePanierCount();
+  renderPanierItems();
+}
+
+function updatePanierCount(){
+  const total=panier.reduce((s,x)=>s+x.qty,0);
+  document.getElementById('panierCount').textContent=total;
+}
+
+function renderPanierItems(){
+  const el=document.getElementById('panierItems');
+  const foot=document.getElementById('panierFooter');
+  if(!panier.length){
+    el.innerHTML='<div class="panier-empty"><div class="empty-icon">🛍</div><p>Votre panier est vide</p><small style="color:var(--gris)">Ajoutez des articles pour commencer</small></div>';
+    foot.innerHTML='';
+    return;
+  }
+  el.innerHTML=panier.map(item=>`
+  <div class="panier-item">
+    <img class="panier-item-img" src="${item.img}" alt="${item.nom}">
+    <div class="panier-item-info">
+      <div class="panier-item-nom">${item.nom}</div>
+      <div class="panier-item-cat">${item.cat}</div>
+      <div class="panier-item-prix">${formatPrix(item.prix)}</div>
+      <div class="panier-item-qty">
+        <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+        <span class="qty-val">${item.qty}</span>
+        <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+        <button class="panier-remove" onclick="supprimerPanier(${item.id})">🗑</button>
+      </div>
+    </div>
+  </div>`).join('');
+
+  const sousTotal=panier.reduce((s,x)=>s+x.prix*x.qty,0);
+  const livraison=sousTotal>=25000?0:2500;
+  const total=sousTotal+livraison;
+  foot.innerHTML=`
+  <div class="panier-subtotal"><span>Sous-total</span><span>${formatPrix(sousTotal)}</span></div>
+  <div class="panier-subtotal"><span>Livraison</span><span>${livraison===0?'Gratuite':formatPrix(livraison)}</span></div>
+  <div class="panier-total"><span>Total</span><span>${formatPrix(total)}</span></div>
+  <button class="btn-checkout" onclick="commander()">Commander maintenant →</button>
+  ${sousTotal<25000?`<p style="text-align:center;font-size:.75rem;color:var(--gris);margin-top:.8rem">Ajoutez ${formatPrix(25000-sousTotal)} pour la livraison gratuite</p>`:'<p style="text-align:center;font-size:.75rem;color:#27ae60;margin-top:.8rem">🎉 Livraison gratuite offerte !</p>'}`;
+}
+
+function togglePanier(){
+  document.getElementById('panierOverlay').classList.toggle('open');
+  renderPanierItems();
+}
+function closePanierOutside(e){if(e.target===document.getElementById('panierOverlay'))togglePanier();}
+
+function commander(){
+  showToast("Commande simulée — Merci pour votre achat ! 🎉");
+  panier=[];
+  updatePanierCount();
+  renderPanierItems();
+  togglePanier();
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+function submitForm(){showToast("Message envoyé ! Nous vous répondrons sous 24h ✉");}
+
+function toggleMenu(){document.getElementById('nav').classList.toggle('open');}
+
+window.addEventListener('scroll',()=>{
+  document.getElementById('header').classList.toggle('scrolled',window.scrollY>50);
+});
+
+function observeReveal(){
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+  },{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>{if(!el.classList.contains('visible'))obs.observe(el);});
+}
+
+// Init
+renderProduits(produits);
+observeReveal();
+</script>
+</body>
+</html>
